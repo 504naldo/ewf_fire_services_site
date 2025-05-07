@@ -12,7 +12,11 @@
       --wind: #547a89;
       --fire: #a75312;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       background: #f9f9f9;
@@ -97,7 +101,6 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="#quote">Request a Quote</a>
-      <a href="#portal">Technician Portal</a>
     </nav>
   </header>
 
@@ -113,18 +116,18 @@
       <li>Annual Verifications</li>
       <li>Sprinkler & Backflow Testing</li>
       <li>Emergency Lighting & Fire Extinguisher Service</li>
-      <li>24/7 Monitoring</li>
     </ul>
   </section>
 
   <section id="about" class="section">
     <h2>About EWF</h2>
-    <p>EWF Fire Services is locally owned and operated in Vancouver, BC. We are certified, trusted, and committed to protecting your property with comprehensive fire protection systems and maintenance.</p>
+    <p>Since 1999, E.W.F has proudly delivered reliable fire protection services with a commitment to excellence and safety. Our ASTTBC-certified technicians bring years of hands-on experience and are trusted by a growing base of loyal clients throughout Vancouver and the surrounding region.</p>
   </section>
 
   <section id="contact" class="section">
     <h2>Contact Us</h2>
-    <form>
+    <form action="https://formsubmit.co/office@ewf.ca" method="POST">
+      <input type="hidden" name="_next" value="https://504naldo.github.io/ewf/thank-you.html" />
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="email" name="email" placeholder="Your Email" required />
       <textarea name="message" rows="5" placeholder="Your Message"></textarea>
@@ -134,7 +137,8 @@
 
   <section id="quote" class="section">
     <h2>Request a Quote</h2>
-    <form>
+    <form action="https://formsubmit.co/office@ewf.ca" method="POST">
+      <input type="hidden" name="_next" value="https://504naldo.github.io/ewf/thank-you.html" />
       <input type="text" name="company" placeholder="Company Name" required />
       <input type="text" name="contact" placeholder="Contact Name" required />
       <input type="email" name="email" placeholder="Email Address" required />
@@ -142,11 +146,6 @@
       <textarea name="details" rows="4" placeholder="Tell us about your fire protection needs..."></textarea>
       <button type="submit">Get Quote</button>
     </form>
-  </section>
-
-  <section id="portal" class="section">
-    <h2>Technician Portal</h2>
-    <p><a href="/technician-login">Click here to log in</a> to the EWF Technician Dashboard for job schedules, reports, and internal communications.</p>
   </section>
 
   <footer>
