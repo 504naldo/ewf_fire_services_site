@@ -70,12 +70,18 @@
     <h2>Contact Us</h2>
     <p><strong>Phone:</strong> 604-649-5665</p>
     <form action="https://formsubmit.co/office@ewandf.ca" method="POST">
-      <input type="hidden" name="_next" value="https://504naldo.github.io/ewf_fire_services_site/thank-you.html" />
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows="5" placeholder="Your Message"></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+  <input type="hidden" name="_next" value="https://504naldo.github.io/ewf_fire_services_site/thank-you.html" />
+
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" rows="5" placeholder="Your Message"></textarea>
+
+  <!-- This automatically sets Reply-To to the user's email -->
+  <input type="hidden" name="_replyto" value="{email}">
+
+  <button type="submit">Send Message</button>
+</form>
+
   </section>
 
   <section id="quote" class="section">
