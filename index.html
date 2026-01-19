@@ -7,28 +7,419 @@
   <meta name="description" content="EWF Fire Services – Reliable Life Safety Solutions in Vancouver, BC" />
   <title>EWF Fire Services</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    :root { --earth: #857347; --wind: #547a89; --fire: #a75312; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; background: #f9f9f9; color: #333; line-height: 1.6; }
-    header { background: #ffffff; border-bottom: 2px solid #eeeeee; padding: 1rem;
-             display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-    header img.logo { height: 64px; width: auto; }
-    nav a { margin-left: 1rem; font-weight: 700; color: var(--wind); text-decoration: none; }
-    .hero { background: linear-gradient(90deg, var(--earth), var(--wind), var(--fire));
-            color: #fff; text-align: center; padding: 3rem 1rem; }
-    .section { max-width: 900px; margin: auto; padding: 2rem 1rem; }
-    .section h2 { color: var(--fire); margin-bottom: 1rem; }
-    form { background: #fff; padding: 1rem; border: 1px solid #ccc; border-radius: 6px; }
-    form input, form textarea, form button {
-      width: 100%; padding: 0.5rem; margin-bottom: 1rem;
-      border: 1px solid #ccc; border-radius: 4px;
+    :root { 
+      --earth: #857347; 
+      --wind: #547a89; 
+      --fire: #a75312; 
+      --light-bg: #f9f9f9;
+      --white: #ffffff;
+      --text-dark: #333;
+      --text-light: #666;
+      --border-color: #e0e0e0;
     }
-    form button { background: var(--fire); color: #fff; border: none; cursor: pointer; }
-    footer { background: #222; color: #ccc; text-align: center; padding: 1rem; }
-    @media (max-width: 600px) {
-      nav { display: flex; flex-direction: column; align-items: flex-end; }
-      nav a { margin: 0.5rem 0; }
+    
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
+      background: var(--light-bg); 
+      color: var(--text-dark); 
+      line-height: 1.7;
+    }
+    
+    header { 
+      background: var(--white); 
+      border-bottom: 2px solid var(--border-color); 
+      padding: 1.25rem 2rem;
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      flex-wrap: wrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    header img.logo { 
+      height: 64px; 
+      width: auto; 
+    }
+    
+    nav { 
+      display: flex; 
+      gap: 1.5rem; 
+      align-items: center;
+    }
+    
+    nav a { 
+      font-weight: 600; 
+      color: var(--wind); 
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    
+    nav a:hover {
+      color: var(--fire);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--fire);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    .phone-number {
+      font-size: 0.95rem; 
+      color: var(--wind);
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    
+    .hero { 
+      background: linear-gradient(135deg, var(--earth), var(--wind), var(--fire));
+      color: #fff; 
+      text-align: center; 
+      padding: 5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      font-weight: 400;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    .section { 
+      max-width: 1100px; 
+      margin: 0 auto; 
+      padding: 4rem 2rem; 
+    }
+    
+    .section h2 { 
+      color: var(--fire); 
+      margin-bottom: 2rem;
+      font-size: 2.25rem;
+      font-weight: 700;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .service-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    
+    .service-card i {
+      font-size: 2.5rem;
+      color: var(--fire);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .service-card h3 {
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .service-card p {
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    
+    .certifications-section {
+      background: var(--white);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .certifications-section h2 {
+      font-size: 1.75rem;
+      color: var(--text-dark);
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+    
+    .certifications-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .cert-logo-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .cert-logo-wrapper img {
+      height: 100px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    
+    .cert-logo-wrapper img:hover {
+      transform: scale(1.05);
+    }
+    
+    .cert-logo-wrapper span {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+    
+    .about-content {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--fire);
+    }
+    
+    .about-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+    
+    .contact-info {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--wind);
+    }
+    
+    .contact-info p {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+    }
+    
+    .contact-info strong {
+      color: var(--fire);
+    }
+    
+    form { 
+      background: var(--white); 
+      padding: 2.5rem; 
+      border: 1px solid var(--border-color); 
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    
+    form input, form textarea { 
+      width: 100%; 
+      padding: 1rem; 
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--border-color); 
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: var(--light-bg);
+    }
+    
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--wind);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(84, 122, 137, 0.1);
+    }
+    
+    form button { 
+      width: 100%;
+      padding: 1rem 2rem;
+      background: var(--fire); 
+      color: var(--white); 
+      border: none; 
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(167, 83, 18, 0.3);
+    }
+    
+    form button:hover {
+      background: #8b4410;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(167, 83, 18, 0.4);
+    }
+    
+    form button:active {
+      transform: translateY(0);
+    }
+    
+    footer { 
+      background: #222; 
+      color: #ccc; 
+      padding: 3rem 2rem;
+    }
+    
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .footer-certifications {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      padding: 2rem 0;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      width: 100%;
+    }
+    
+    .footer-certifications img {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      filter: brightness(0) invert(1);
+    }
+    
+    .footer-certifications img:hover {
+      opacity: 1;
+    }
+    
+    .footer-text {
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+      
+      nav { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: flex-end;
+        gap: 0.75rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .section {
+        padding: 3rem 1.5rem;
+      }
+      
+      .section h2 {
+        font-size: 1.75rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .certifications-logos {
+        gap: 2rem;
+      }
+      
+      .cert-logo-wrapper img {
+        height: 80px;
+      }
+      
+      form {
+        padding: 1.5rem;
+      }
+      
+      .footer-certifications {
+        gap: 2rem;
+      }
+      
+      .footer-certifications img {
+        height: 50px;
+      }
     }
   </style>
 </head>
@@ -38,67 +429,107 @@
     <div>
       <nav>
         <a href="#services">Services</a>
+        <a href="#certifications">Certifications</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <a href="#quote">Request a Quote</a>
       </nav>
-      <p style="font-size: 0.9rem; color: #547a89;">Call Us: 604-649-5665</p>
+      <p class="phone-number"><i class="fas fa-phone"></i> Call Us: 604-649-5665</p>
     </div>
   </header>
 
   <section class="hero">
-    <h1>Reliable Life Safety Solutions</h1>
-    <p>Serving Vancouver’s Residential & Commercial Properties</p>
+    <div class="hero-content">
+      <h1>Reliable Life Safety Solutions</h1>
+      <p>Serving Vancouver's Residential & Commercial Properties</p>
+    </div>
   </section>
 
   <section id="services" class="section">
     <h2>Our Services</h2>
-    <ul>
-      <li>Fire Alarm Inspections & Installations</li>
-      <li>Sprinkler & Backflow Testing</li>
-      <li>Emergency Lighting & Fire Extinguisher Service</li>
-      <li>24/7 Emergency Services</li>
-    </ul>
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fas fa-bell"></i>
+        <h3>Fire Alarm Systems</h3>
+        <p>Professional inspections and installations of fire alarm systems to keep your property protected.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-tint"></i>
+        <h3>Sprinkler & Backflow Testing</h3>
+        <p>Comprehensive testing and maintenance of sprinkler systems and backflow prevention devices.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Emergency Lighting</h3>
+        <p>Installation and servicing of emergency lighting systems and fire extinguishers.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-clock"></i>
+        <h3>24/7 Emergency Services</h3>
+        <p>Round-the-clock emergency response for urgent fire protection needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications" class="certifications-section">
+    <h2>Certified & Code-Compliant Life Safety Services</h2>
+    <div class="certifications-logos">
+      <div class="cert-logo-wrapper">
+        <img src="asttbc-logo.jpg" alt="ASTTBC Certified Technicians" loading="lazy" />
+        <span>ASTTBC Certified Technicians</span>
+      </div>
+      <div class="cert-logo-wrapper">
+        <img src="nfpa-logo.png" alt="NFPA Standards Compliance" loading="lazy" />
+        <span>NFPA Standards Compliance</span>
+      </div>
+    </div>
   </section>
 
   <section id="about" class="section">
     <h2>About EWF</h2>
-    <p>Since 1999, E.W.F has proudly delivered reliable fire protection services with a commitment to excellence and safety. Our ASTTBC-certified technicians bring years of hands-on experience and are trusted by a growing base of loyal clients throughout Vancouver and the surrounding region.</p>
+    <div class="about-content">
+      <p>Since 1999, E.W.F has proudly delivered reliable fire protection services with a commitment to excellence and safety. Our ASTTBC-certified technicians bring years of hands-on experience and are trusted by a growing base of loyal clients throughout Vancouver and the surrounding region.</p>
+    </div>
   </section>
 
   <section id="contact" class="section">
     <h2>Contact Us</h2>
-    <p><strong>Phone:</strong> 604-649-5665</p>
+    <div class="contact-info">
+      <p><strong>Phone:</strong> 604-649-5665</p>
+    </div>
     <form action="https://formsubmit.co/office@ewandf.ca" method="POST">
-  <input type="hidden" name="_next" value="https://504naldo.github.io/ewf_fire_services_site/thank-you.html" />
-
-  <input type="text" name="name" placeholder="Your Name" required />
-  <input type="email" name="email" placeholder="Your Email" required />
-  <textarea name="message" rows="5" placeholder="Your Message"></textarea>
-
-  <!-- This automatically sets Reply-To to the user's email -->
-  <input type="hidden" name="_replyto" value="{email}">
-
-  <button type="submit">Send Message</button>
-</form>
-
+      <input type="hidden" name="_next" value="https://ewfservices.ca/thank-you.html" />
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message"></textarea>
+      <input type="hidden" name="_replyto" value="{email}">
+      <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+    </form>
   </section>
 
   <section id="quote" class="section">
     <h2>Request a Quote</h2>
     <form action="https://formsubmit.co/office@ewandf.ca" method="POST">
-      <input type="hidden" name="_next" value="https://504naldo.github.io/ewf_fire_services_site/thank-you.html" />
+      <input type="hidden" name="_next" value="https://ewfservices.ca/thank-you.html" />
       <input type="text" name="company" placeholder="Company Name" required />
       <input type="text" name="contact" placeholder="Contact Name" required />
       <input type="email" name="email" placeholder="Email Address" required />
       <input type="tel" name="phone" placeholder="Phone Number" />
       <textarea name="details" rows="4" placeholder="Tell us about your fire protection needs..."></textarea>
-      <button type="submit">Get Quote</button>
+      <button type="submit"><i class="fas fa-file-invoice"></i> Get Quote</button>
     </form>
   </section>
 
   <footer>
-    <p>&copy; 2025 EWF Fire Services. All rights reserved.</p>
+    <div class="footer-content">
+      <div class="footer-certifications">
+        <img src="asttbc-logo.jpg" alt="ASTTBC Certified Technicians" loading="lazy" />
+        <img src="nfpa-logo.png" alt="NFPA Standards Compliance" loading="lazy" />
+      </div>
+      <div class="footer-text">
+        <p>&copy; 2025 EWF Fire Services. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 </body>
 </html>
