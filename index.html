@@ -357,11 +357,18 @@
       object-fit: contain;
       opacity: 0.8;
       transition: opacity 0.3s ease;
-      filter: brightness(0) invert(1);
     }
     
     .footer-certifications img:hover {
       opacity: 1;
+    }
+    
+    .footer-certifications .nfpa-logo {
+      filter: brightness(0) invert(1);
+    }
+    
+    .footer-certifications .asttbc-logo {
+      /* No filter needed - using white logo version */
     }
     
     .footer-text {
@@ -523,8 +530,8 @@
   <footer>
     <div class="footer-content">
       <div class="footer-certifications">
-        <img src="asttbc-logo.jpg" alt="ASTTBC Certified Technicians" loading="lazy" />
-        <img src="nfpa-logo.png" alt="NFPA Standards Compliance" loading="lazy" />
+        <img src="asttbc-logo-white.jpg" alt="ASTTBC Certified Technicians" class="asttbc-logo" loading="lazy" />
+        <img src="nfpa-logo.png" alt="NFPA Standards Compliance" class="nfpa-logo" loading="lazy" />
       </div>
       <div class="footer-text">
         <p>&copy; 2025 EWF Fire Services. All rights reserved.</p>
