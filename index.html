@@ -107,7 +107,7 @@
       background-repeat: no-repeat;
       color: #fff; 
       text-align: center; 
-      padding: 5rem 2rem;
+      padding: 6rem 2rem;
       position: relative;
       overflow: hidden;
     }
@@ -126,21 +126,43 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
     }
     
     .hero h1 {
       font-size: 3rem;
       font-weight: 700;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      margin-bottom: 1.25rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      line-height: 1.2;
     }
     
     .hero p {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 400;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--fire);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(167, 83, 18, 0.4);
+    }
+    
+    .cta-button:hover {
+      background: #8b4410;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(167, 83, 18, 0.5);
     }
     
     .section { 
@@ -194,55 +216,105 @@
     .service-card p {
       color: var(--text-light);
       line-height: 1.6;
+      font-size: 0.95rem;
     }
     
-    .certifications-section {
-      background: var(--white);
-      padding: 3rem 2rem;
+    .cta-section {
       text-align: center;
+      padding: 3rem 2rem;
+      background: var(--white);
       border-top: 1px solid var(--border-color);
       border-bottom: 1px solid var(--border-color);
     }
     
-    .certifications-section h2 {
-      font-size: 1.75rem;
+    .certifications-strip {
+      background: var(--light-bg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .certifications-strip h3 {
+      font-size: 1.5rem;
       color: var(--text-dark);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       font-weight: 600;
     }
     
-    .certifications-logos {
+    .cert-logos-row {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 4rem;
+      gap: 3rem;
       flex-wrap: wrap;
       max-width: 800px;
+      margin: 0 auto 1rem;
+    }
+    
+    .cert-logos-row img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
+    }
+    
+    .cert-logos-row img:hover {
+      opacity: 1;
+    }
+    
+    .cert-caption {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-top: 1rem;
+    }
+    
+    .how-it-works {
+      background: var(--white);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .how-it-works h2 {
+      font-size: 2rem;
+      color: var(--fire);
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+    }
+    
+    .steps-row {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      max-width: 900px;
       margin: 0 auto;
     }
     
-    .cert-logo-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
+    .step {
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
     }
     
-    .cert-logo-wrapper img {
-      height: 100px;
-      width: auto;
-      object-fit: contain;
-      transition: transform 0.3s ease;
+    .step-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: var(--fire);
+      color: var(--white);
+      border-radius: 50%;
+      line-height: 40px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
     }
     
-    .cert-logo-wrapper img:hover {
-      transform: scale(1.05);
-    }
-    
-    .cert-logo-wrapper span {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      font-weight: 500;
+    .step h4 {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
     }
     
     .about-content {
@@ -339,7 +411,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
     }
     
     .footer-certifications {
@@ -374,6 +446,16 @@
       /* No filter needed - using white logo version */
     }
     
+    .footer-certifications .ulc-logo {
+      filter: brightness(0) invert(1);
+    }
+    
+    .footer-service-area {
+      font-size: 0.95rem;
+      color: #999;
+      text-align: center;
+    }
+    
     .footer-text {
       text-align: center;
     }
@@ -390,12 +472,16 @@
         gap: 0.75rem;
       }
       
+      .hero {
+        padding: 4rem 1.5rem;
+      }
+      
       .hero h1 {
         font-size: 2rem;
       }
       
       .hero p {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
       }
       
       .section {
@@ -411,12 +497,21 @@
         gap: 1.5rem;
       }
       
-      .certifications-logos {
+      .cert-logos-row {
         gap: 2rem;
       }
       
-      .cert-logo-wrapper img {
-        height: 80px;
+      .cert-logos-row img {
+        height: 40px;
+      }
+      
+      .steps-row {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .step {
+        max-width: 100%;
       }
       
       form {
@@ -450,9 +545,20 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>Reliable Life Safety Solutions</h1>
-      <p>Serving Vancouver's Residential & Commercial Properties</p>
+      <h1>Fire Protection & Life Safety Services for Vancouver Properties</h1>
+      <p>Inspections, testing, and service for fire alarm, sprinkler, backflow, emergency lighting, and extinguishers — delivered by certified technicians.</p>
+      <a href="#quote" class="cta-button">Request a Quote</a>
     </div>
+  </section>
+
+  <section class="certifications-strip">
+    <h3>Certified & Code-Compliant</h3>
+    <div class="cert-logos-row">
+      <img src="/assets/certifications/asttbc-logo.png" alt="ASTTBC Certified Technicians" loading="lazy" />
+      <img src="/assets/certifications/ulc-logo.png" alt="ULC Compliance" loading="lazy" />
+      <img src="/assets/certifications/nfpa-logo.png" alt="NFPA Standards" loading="lazy" />
+    </div>
+    <p class="cert-caption">ASTTBC-Certified technicians • ULC & NFPA aligned service practices</p>
   </section>
 
   <section id="services" class="section">
@@ -460,37 +566,50 @@
     <div class="services-grid">
       <div class="service-card">
         <i class="fas fa-bell"></i>
-        <h3>Fire Alarm Systems</h3>
-        <p>Professional inspections and installations of fire alarm systems to keep your property protected.</p>
+        <h3>Fire Alarm Inspections & Installations</h3>
+        <p>Ensure code compliance and reliable detection.</p>
       </div>
       <div class="service-card">
         <i class="fas fa-tint"></i>
         <h3>Sprinkler & Backflow Testing</h3>
-        <p>Comprehensive testing and maintenance of sprinkler systems and backflow prevention devices.</p>
+        <p>Certified testing with clear reporting.</p>
       </div>
       <div class="service-card">
         <i class="fas fa-lightbulb"></i>
         <h3>Emergency Lighting</h3>
-        <p>Installation and servicing of emergency lighting systems and fire extinguishers.</p>
+        <p>Routine inspections and repairs to keep exits safe.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-fire-extinguisher"></i>
+        <h3>Fire Extinguishers</h3>
+        <p>Service, tags, and compliance-ready documentation.</p>
       </div>
       <div class="service-card">
         <i class="fas fa-clock"></i>
-        <h3>24/7 Emergency Services</h3>
-        <p>Round-the-clock emergency response for urgent fire protection needs.</p>
+        <h3>24/7 Emergency Service</h3>
+        <p>Fast response for critical life-safety issues.</p>
       </div>
     </div>
   </section>
 
-  <section id="certifications" class="certifications-section">
-    <h2>Certified & Code-Compliant Life Safety Services</h2>
-    <div class="certifications-logos">
-      <div class="cert-logo-wrapper">
-        <img src="asttbc-logo.jpg" alt="ASTTBC Certified Technicians" loading="lazy" />
-        <span>ASTTBC Certified Technicians</span>
+  <div class="cta-section">
+    <a href="#quote" class="cta-button">Book an Inspection</a>
+  </div>
+
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>Request a Quote</h4>
       </div>
-      <div class="cert-logo-wrapper">
-        <img src="nfpa-logo.png" alt="NFPA Standards Compliance" loading="lazy" />
-        <span>NFPA Standards Compliance</span>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>On-Site Service</h4>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>Reporting & Compliance Documentation</h4>
       </div>
     </div>
   </section>
@@ -533,9 +652,11 @@
   <footer>
     <div class="footer-content">
       <div class="footer-certifications">
-        <img src="asttbc-logo-white.jpg" alt="ASTTBC Certified Technicians" class="asttbc-logo" loading="lazy" />
-        <img src="nfpa-logo.png" alt="NFPA Standards Compliance" class="nfpa-logo" loading="lazy" />
+        <img src="/assets/certifications/asttbc-logo.png" alt="ASTTBC Certified Technicians" class="asttbc-logo" loading="lazy" />
+        <img src="/assets/certifications/ulc-logo.png" alt="ULC Compliance" class="ulc-logo" loading="lazy" />
+        <img src="/assets/certifications/nfpa-logo.png" alt="NFPA Standards" class="nfpa-logo" loading="lazy" />
       </div>
+      <p class="footer-service-area">Serving Vancouver & Greater Metro Vancouver.</p>
       <div class="footer-text">
         <p>&copy; 2025 EWF Fire Services. All rights reserved.</p>
       </div>
