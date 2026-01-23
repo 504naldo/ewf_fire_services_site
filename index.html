@@ -453,6 +453,28 @@
       line-height: 1.5;
     }
     
+    .work-image-section {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    
+    .work-image-section img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: block;
+    }
+    
+    .work-image-caption {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+    
     footer { 
       background: #222; 
       color: #ccc; 
@@ -645,6 +667,11 @@
       </div>
     </div>
   </section>
+
+  <div class="work-image-section">
+    <img src="/work-in-progress.jpg" alt="Fire protection technician performing on-site inspection" loading="lazy" />
+    <p class="work-image-caption">Certified technicians performing on-site inspections and life safety system testing.</p>
+  </div>
 
   <div class="cta-section">
     <a href="#quote" class="cta-button">Book an Inspection</a>
