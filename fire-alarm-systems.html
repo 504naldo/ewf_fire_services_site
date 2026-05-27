@@ -20,231 +20,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root { 
-      --earth: #857347; 
-      --wind: #547a89; 
-      --fire: #a75312; 
-      --light-bg: #f9f9f9;
-      --white: #ffffff;
-      --text-dark: #333;
-      --text-light: #666;
-      --border-color: #e0e0e0;
-    }
-    
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    body { 
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
-      background: var(--light-bg); 
-      color: var(--text-dark); 
-      line-height: 1.7;
-    }
-    
-    header { 
-      background: var(--white); 
-      border-bottom: 2px solid var(--border-color); 
-      padding: 1.25rem 2rem;
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      flex-wrap: wrap;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    
-    header img.logo { 
-      height: 64px; 
-      width: auto; 
-    }
-    
-    nav { 
-      display: flex; 
-      gap: 1.5rem; 
-      align-items: center;
-    }
-    
-    nav a { 
-      font-weight: 600; 
-      color: var(--wind); 
-      text-decoration: none;
-      transition: all 0.3s ease;
-      position: relative;
-      padding: 0.5rem 0;
-    }
-    
-    nav a:hover {
-      color: var(--fire);
-    }
-    
-    .phone-number {
-      font-size: 0.95rem; 
-      color: var(--wind);
-      font-weight: 600;
-      margin-top: 0.5rem;
-    }
-    
-    .article-container {
-      max-width: 900px;
-      margin: 4rem auto;
-      padding: 0 2rem;
-    }
-    
-    .article-container h1 {
-      font-size: 2.5rem;
-      color: var(--fire);
-      margin-bottom: 1rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-    
-    .standards-line {
-      font-size: 1.05rem;
-      color: var(--text-light);
-      margin-bottom: 3rem;
-      font-style: italic;
-    }
-    
-    .article-container h2 {
-      font-size: 2rem;
-      color: var(--fire);
-      margin-top: 4rem;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-    
-    .article-container p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--text-dark);
-      margin-bottom: 1.5rem;
-    }
-    
-    .article-container ul {
-      margin: 1.5rem 0 1.5rem 2rem;
-    }
-    
-    .article-container li {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--text-dark);
-      margin-bottom: 0.75rem;
-    }
-    
-    .cta-box {
-      background: var(--white);
-      border: 2px solid var(--fire);
-      border-radius: 8px;
-      padding: 2rem;
-      text-align: center;
-      margin-top: 4rem;
-    }
-    
-    .cta-box p {
-      font-size: 1.1rem;
-      color: var(--text-dark);
-      margin-bottom: 1.5rem;
-    }
-    
-    .cta-button {
-      display: inline-block;
-      background: var(--fire);
-      color: var(--white);
-      padding: 1rem 2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(167, 83, 18, 0.3);
-    }
-    
-    .cta-button:hover {
-      background: #8b4410;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(167, 83, 18, 0.4);
-    }
-    
-    footer { 
-      background: #222; 
-      color: #ccc; 
-      padding: 2.5rem 2rem; 
-      text-align: center;
-      margin-top: 4rem;
-    }
-    
-    footer p {
-      margin: 0.5rem 0;
-      font-size: 0.95rem;
-    }
-    
-    .footer-logos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
-    }
-    
-    .footer-logos img {
-      height: 60px;
-      width: auto;
-      object-fit: contain;
-      opacity: 0.9;
-    }
-    
-    .footer-logos .asttbc-logo {
-      filter: none;
-    }
-    
-    .footer-logos .nfpa-logo {
-      filter: brightness(0) invert(1);
-    }
-    
-    .footer-logos .ulc-logo {
-      filter: brightness(0) invert(1);
-    }
-    
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-      
-      .article-container h1 {
-        font-size: 2rem;
-      }
-      
-      .article-container h2 {
-        font-size: 1.5rem;
-      }
-      
-      .article-container p, .article-container li {
-        font-size: 1rem;
-      }
-      
-      .footer-logos img {
-        height: 50px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+
   <header>
     <a href="/"><img src="logo.png" alt="EWF Fire Services" class="logo" /></a>
     <nav>
@@ -255,77 +35,179 @@
     <div class="phone-number">Call Us: 604-649-5665</div>
   </header>
 
-  <article class="article-container">
-    <h1>Fire Alarm Systems</h1>
-    
-    <p class="standards-line">Fire alarm services performed in accordance with applicable CAN/ULC standards, manufacturer requirements, and AHJ direction.</p>
-    
-    <h2>A Practical, Inspection-Focused Approach</h2>
-    
-    <p>Fire alarm systems are a critical component of a building's life safety strategy. Proper inspection and testing require an understanding of how devices, control equipment, and connected systems are intended to operate together.</p>
-    
-    <p>EWF provides fire alarm inspection and testing services focused on confirming operational readiness, identifying deficiencies, and supporting building owners in maintaining compliant, reliable systems.</p>
-    
-    <h2>Fire Alarm Inspection & Testing Services</h2>
-    
-    <ul>
-      <li>Annual and periodic fire alarm inspections</li>
-      <li>Operational testing of initiating and notification devices</li>
-      <li>Testing of control equipment functions</li>
-      <li>Confirmation of alarm, supervisory, and trouble signal operation</li>
-      <li>Review of system operation under normal conditions</li>
-      <li>Identification and documentation of deficiencies</li>
-    </ul>
-    
-    <h2>System Interfaces & Coordinated Operation</h2>
-    
-    <p>Fire alarm systems rarely operate in isolation. In many buildings, they interact with multiple life safety and building systems designed to respond during an emergency.</p>
-    
-    <p>During inspections and testing, EWF technicians assess observable system responses and interactions, including:</p>
-    
-    <ul>
-      <li>Fire sprinkler alarm and supervisory inputs</li>
-      <li>Smoke control system initiation signals</li>
-      <li>Elevator recall functions</li>
-      <li>Emergency power and generator status indications</li>
-      <li>Door hardware and ancillary control devices</li>
-    </ul>
-    
-    <p>Where system interactions are present, observations are documented and communicated to support coordinated system operation and informed follow-up as required.</p>
-    
-    <p>This approach helps ensure life safety systems function together as intended and provides building owners and managers with meaningful insight into overall system performance.</p>
-    
-    <h2>Clear Deficiency Identification & Reporting</h2>
-    
-    <p>Inspections only add value when deficiencies are clearly identified and communicated.</p>
-    
-    <p>EWF provides structured inspection reporting that:</p>
-    
-    <ul>
-      <li>identifies deficiencies observed during testing</li>
-      <li>describes issues clearly and professionally</li>
-      <li>supports corrective action by qualified contractors</li>
-      <li>assists owners and managers in maintaining compliance</li>
-    </ul>
-    
-    <h2>Supporting Complex Buildings</h2>
-    
-    <p>Fire alarm inspections become increasingly important in buildings with interconnected life safety systems or multiple occupancy types.</p>
-    
-    <p>EWF supports inspection and testing in:</p>
-    
-    <ul>
-      <li>multi-residential and high-rise buildings</li>
-      <li>commercial and mixed-use properties</li>
-      <li>parkades and common areas</li>
-      <li>buildings with integrated sprinkler and smoke control systems</li>
-    </ul>
-    
-    <div class="cta-box">
-      <p>Request a Fire Alarm Inspection</p>
-      <a href="/#contact" class="cta-button">Contact Us</a>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Fire Alarm System Inspection &amp; Testing in Vancouver, BC</h1>
+      <p>Operational testing, deficiency reporting, and compliance documentation for fire alarm systems in strata, commercial, and high-rise buildings throughout Vancouver and the Lower Mainland.</p>
+      <div class="hero-cta-group">
+        <a href="/#contact" class="cta-button">Request an Inspection</a>
+        <a href="tel:6046495665" class="cta-button-outline">Call 604-649-5665</a>
+      </div>
     </div>
-  </article>
+  </section>
+
+  <!-- Intro -->
+  <section class="bg-white">
+    <div class="section-narrow">
+      <p class="body-text">Fire alarm systems are a critical component of a building's life safety strategy. Proper inspection and testing require an understanding of how devices, control equipment, and connected systems are intended to operate together — not just a checklist of components.</p>
+      <p class="body-text">EWF provides fire alarm inspection and testing services focused on confirming operational readiness, identifying deficiencies, and supporting building owners and property managers in maintaining compliant, reliable systems.</p>
+      <p class="standards-line">Fire alarm services performed in accordance with CAN/ULC-S536, applicable manufacturer requirements, and AHJ direction.</p>
+    </div>
+  </section>
+
+  <!-- What We Inspect -->
+  <section class="bg-light">
+    <div class="section-wide">
+      <h2 class="section-title">What We Inspect &amp; Test</h2>
+      <p class="section-lead">A thorough fire alarm inspection covers initiating devices, notification appliances, control equipment, and connected system interfaces — verifying that each component operates as intended.</p>
+      <div class="test-items-grid">
+        <div class="test-card">
+          <i class="fa-solid fa-circle-dot"></i>
+          <span>Smoke Detectors</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-temperature-half"></i>
+          <span>Heat Detectors</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-hand"></i>
+          <span>Manual Pull Stations</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-volume-high"></i>
+          <span>Notification Appliances (Horns &amp; Strobes)</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-server"></i>
+          <span>Fire Alarm Control Panel</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-display"></i>
+          <span>Annunciators &amp; Remote Panels</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-network-wired"></i>
+          <span>System Interfaces (Elevator, Smoke Control, Doors)</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-droplet"></i>
+          <span>Sprinkler Inputs &amp; Supervisory Devices</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-battery-full"></i>
+          <span>Emergency Power &amp; Battery Backup</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Deficiency Documentation &amp; Reporting</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why It Matters -->
+  <section class="bg-white">
+    <div class="section-narrow">
+      <h2 class="section-title">A Practical, Inspection-Focused Approach</h2>
+      <p class="body-text">Fire alarm systems rarely operate in isolation. In many buildings, they interact with multiple life safety and building systems designed to respond during an emergency — including smoke control, elevator recall, door holders, sprinkler supervisory inputs, and emergency power.</p>
+      <div class="highlight-box">
+        <p>Inspections only add value when deficiencies are clearly identified and communicated. EWF provides structured inspection reporting that describes issues professionally, supports corrective action by qualified contractors, and assists owners and managers in maintaining compliance.</p>
+      </div>
+      <p class="body-text">EWF supports inspection and testing in multi-residential and high-rise buildings, commercial and mixed-use properties, parkades, and buildings with integrated sprinkler and smoke control systems.</p>
+    </div>
+  </section>
+
+  <!-- Our Process -->
+  <section class="bg-light">
+    <div class="section-wide">
+      <h2 class="section-title section-title-center">Our Process</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3>Review System Documentation</h3>
+          <p>Review panel type, zone layout, previous inspection records, and any known deficiencies before arriving on site.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3>Test Devices &amp; Control Functions</h3>
+          <p>Test initiating devices, notification appliances, control panel functions, and observable system interface responses.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3>Confirm System Interface Operation</h3>
+          <p>Verify elevator recall, smoke control interfaces, door holders, emergency power, and other connected systems where applicable.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3>Document &amp; Report</h3>
+          <p>Provide clear deficiency documentation, inspection notes, and follow-up recommendations supporting BC Fire Code and AHJ recordkeeping obligations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white">
+    <div class="section-narrow">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details>
+          <summary>How often should fire alarm systems be inspected in BC?</summary>
+          <div class="faq-answer">Most fire alarm systems require annual inspection and testing under the BC Fire Code. Some components may require more frequent testing depending on system type, occupancy, and AHJ requirements. EWF can advise on applicable intervals for your building.</div>
+        </details>
+        <details>
+          <summary>What standards govern fire alarm inspections?</summary>
+          <div class="faq-answer">Fire alarm inspections in BC are typically performed in accordance with CAN/ULC-S536 (Inspection and Testing of Fire Alarm Systems) and manufacturer requirements. AHJ direction may also specify additional requirements depending on the building and jurisdiction.</div>
+        </details>
+        <details>
+          <summary>Can EWF help identify and document deficiencies?</summary>
+          <div class="faq-answer">Yes. EWF provides structured deficiency documentation that clearly identifies issues observed during testing, supports corrective action by qualified contractors, and assists building owners and managers in maintaining compliance.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="bg-light">
+    <div class="section-wide">
+      <h2 class="section-title">Related Services</h2>
+      <div class="related-grid">
+        <a href="/smoke-control-systems" class="related-card">
+          <i class="fa-solid fa-wind"></i>
+          <span>Smoke Control Testing</span>
+        </a>
+        <a href="/sprinkler-systems" class="related-card">
+          <i class="fa-solid fa-droplet"></i>
+          <span>Sprinkler Inspection</span>
+        </a>
+        <a href="/emergency-lighting" class="related-card">
+          <i class="fa-solid fa-lightbulb"></i>
+          <span>Emergency Lighting</span>
+        </a>
+        <a href="/fire-extinguishers" class="related-card">
+          <i class="fa-solid fa-fire-extinguisher"></i>
+          <span>Fire Extinguishers</span>
+        </a>
+        <a href="/#contact" class="related-card">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Request a Quote</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta-section">
+    <div class="cta-box">
+      <h2>Need a Fire Alarm Inspection?</h2>
+      <p>EWF provides professional fire alarm inspection and testing services throughout Vancouver and the Lower Mainland. Contact our team to schedule an inspection, discuss deficiencies, or request compliance documentation support.</p>
+      <div class="cta-group">
+        <a href="/#contact" class="cta-button">Request an Inspection</a>
+        <a href="tel:6046495665" class="cta-button-secondary">Call 604-649-5665</a>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <p>&copy; 2025 EWF Fire Services. All rights reserved.</p>
@@ -334,7 +216,8 @@
       <img src="/assets/certifications/ulc-logo.png" alt="ULC Compliance" class="ulc-logo" />
       <img src="/assets/certifications/nfpa-logo.png" alt="NFPA Standards" class="nfpa-logo" />
     </div>
-    <p>Serving Vancouver & Greater Metro Vancouver.</p>
+    <p>Serving Vancouver &amp; Greater Metro Vancouver.</p>
   </footer>
+
 </body>
 </html>

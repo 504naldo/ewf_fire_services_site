@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,260 +20,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root { 
-      --earth: #857347; 
-      --wind: #547a89; 
-      --fire: #a75312; 
-      --light-bg: #f9f9f9;
-      --white: #ffffff;
-      --text-dark: #333;
-      --text-light: #666;
-      --border-color: #e0e0e0;
-    }
-    
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    body { 
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; 
-      background: var(--light-bg); 
-      color: var(--text-dark); 
-      line-height: 1.7;
-    }
-    
-    header { 
-      background: var(--white); 
-      border-bottom: 2px solid var(--border-color); 
-      padding: 1.25rem 2rem;
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      flex-wrap: wrap;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    
-    header img.logo { 
-      height: 64px; 
-      width: auto; 
-    }
-    
-    nav { 
-      display: flex; 
-      gap: 1.5rem; 
-      align-items: center;
-    }
-    
-    nav a { 
-      font-weight: 600; 
-      color: var(--wind); 
-      text-decoration: none;
-      transition: all 0.3s ease;
-      position: relative;
-      padding: 0.5rem 0;
-    }
-    
-    nav a:hover {
-      color: var(--fire);
-    }
-    
-    .phone-number {
-      font-size: 0.95rem; 
-      color: var(--wind);
-      font-weight: 600;
-      margin-top: 0.5rem;
-    }
-    
-    .article-container {
-      max-width: 900px;
-      margin: 4rem auto;
-      padding: 0 2rem;
-    }
-    
-    .article-container h1 {
-      font-size: 2.5rem;
-      color: var(--fire);
-      margin-bottom: 1rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-    
-    .standards-line {
-      font-size: 1.05rem;
-      color: var(--text-light);
-      margin-bottom: 3rem;
-      font-style: italic;
-    }
-    
-    .article-container h2 {
-      font-size: 2rem;
-      color: var(--fire);
-      margin-top: 4rem;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-    
-    .article-container p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--text-dark);
-      margin-bottom: 1.5rem;
-    }
-    
-    .article-container ul {
-      margin: 1.5rem 0 1.5rem 2rem;
-    }
-    
-    .article-container li {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--text-dark);
-      margin-bottom: 0.75rem;
-    }
-    
-    .article-image {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      margin: 2.5rem 0;
-      display: block;
-    }
-    
-    .before-after-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin: 2.5rem 0;
-    }
-    
-    .before-after-container img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    
-    .cta-box {
-      background: var(--white);
-      border: 2px solid var(--fire);
-      border-radius: 8px;
-      padding: 2rem;
-      text-align: center;
-      margin-top: 4rem;
-    }
-    
-    .cta-box p {
-      font-size: 1.1rem;
-      color: var(--text-dark);
-      margin-bottom: 1.5rem;
-    }
-    
-    .cta-button {
-      display: inline-block;
-      background: var(--fire);
-      color: var(--white);
-      padding: 1rem 2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(167, 83, 18, 0.3);
-    }
-    
-    .cta-button:hover {
-      background: #8b4410;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(167, 83, 18, 0.4);
-    }
-    
-    footer { 
-      background: #222; 
-      color: #ccc; 
-      padding: 2.5rem 2rem; 
-      text-align: center;
-      margin-top: 4rem;
-    }
-    
-    footer p {
-      margin: 0.5rem 0;
-      font-size: 0.95rem;
-    }
-    
-    .footer-logos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
-    }
-    
-    .footer-logos img {
-      height: 60px;
-      width: auto;
-      object-fit: contain;
-      opacity: 0.9;
-    }
-    
-    .footer-logos .asttbc-logo {
-      filter: none;
-    }
-    
-    .footer-logos .nfpa-logo {
-      filter: brightness(0) invert(1);
-    }
-    
-    .footer-logos .ulc-logo {
-      filter: brightness(0) invert(1);
-    }
-    
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-      
-      .article-container h1 {
-        font-size: 2rem;
-      }
-      
-      .article-container h2 {
-        font-size: 1.5rem;
-      }
-      
-      .article-container p, .article-container li {
-        font-size: 1rem;
-      }
-      
-      .before-after-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      
-      .footer-logos img {
-        height: 50px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+
   <header>
     <a href="/"><img src="logo.png" alt="EWF Fire Services" class="logo" /></a>
     <nav>
@@ -285,46 +35,191 @@
     <div class="phone-number">Call Us: 604-649-5665</div>
   </header>
 
-  <article class="article-container">
-    <h1>Sprinkler System Reliability & Compliance</h1>
-    
-    <p class="standards-line">All work is performed in alignment with NFPA 25 and applicable CAN/ULC standards.</p>
-    
-    <h2>Why End-of-Line Fire Sprinkler Flushing Matters</h2>
-    
-    <p>These photos are from a recent follow-up to a five-year internal inspection of a fire sprinkler subsystem. During the inspection, a significant amount of debris and evidence of M.I.C. (Microbiologically Influenced Corrosion) was identified within the system.</p>
-    
-    <img src="/sprinkler-flushing.jpg" alt="Fire sprinkler system flushing in an active parkade" class="article-image" loading="lazy" />
-    
-    <p>As is often the case, the most impacted areas were the end-of-branch lines, where sediment, corrosion by-products, and biological material naturally accumulate over time. If left unaddressed, these conditions can lead to restricted water flow, accelerated component deterioration, and reduced system performance during a fire event.</p>
-    
-    <p>The appropriate corrective action was a full system flush, with particular focus on the end-of-line piping. The flushing process restored water clarity and helped return the system to a reliable operating condition.</p>
-    
-    <p>Credit to EWF (Earth, Wind & Fire) for completing the work professionally and efficiently, including thorough cleanup upon completion. This is especially important when work is performed in an active parkade.</p>
-    
-    <p>Inspections only add value when deficiencies are corrected. Proactive flushing plays a critical role in maintaining fire sprinkler system reliability and overall life safety.</p>
-    
-    <h2>Before & After — NFPA 25 PRV Compliance Upgrade</h2>
-    
-    <div class="before-after-container">
-      <img src="/prv-before.jpg" alt="Fire sprinkler PRV system before NFPA 25 compliance upgrade" loading="lazy" />
-      <img src="/prv-after.jpg" alt="Fire sprinkler PRV system after NFPA 25 compliance upgrade" loading="lazy" />
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Sprinkler System Testing &amp; NFPA 25 Compliance in Vancouver, BC</h1>
+      <p>End-of-line flushing, PRV testing, flow tests, and deficiency documentation for strata, commercial, and parkade sprinkler systems throughout Vancouver and the Lower Mainland.</p>
+      <div class="hero-cta-group">
+        <a href="/#contact" class="cta-button">Request Sprinkler Testing</a>
+        <a href="tel:6046495665" class="cta-button-outline">Call 604-649-5665</a>
+      </div>
     </div>
-    
-    <p>As part of the NFPA 25 five-year pressure-reducing valve (PRV) testing requirements, this fire protection system needed to be brought into full compliance.</p>
-    
-    <ul>
-      <li>🔍 EWF identified the requirement for periodic PRV testing under NFPA 25, which mandates full-flow testing every five years to verify proper pressure regulation.</li>
-      <li>🔧 Our fitters installed proper PRV test ports and piping to allow accurate full-flow testing and future compliance.</li>
-    </ul>
-    
-    <p>A solid example of inspection findings and field work coming together to support safe, testable, code-compliant systems.</p>
-    
+  </section>
+
+  <!-- Intro -->
+  <section class="bg-white">
+    <div class="section-narrow">
+      <p class="body-text">Fire sprinkler systems require regular inspection and maintenance to remain reliable and code-compliant. Over time, internal corrosion, sediment buildup, and system changes can compromise performance — often without any visible sign until a flow test or flush reveals the problem.</p>
+      <p class="body-text">EWF provides sprinkler inspection and testing services focused on confirming system reliability, identifying deficiencies, and supporting building owners and property managers with NFPA 25-aligned documentation.</p>
+      <p class="standards-line">All work performed in alignment with NFPA 25 and applicable CAN/ULC standards.</p>
+    </div>
+  </section>
+
+  <!-- What We Test -->
+  <section class="bg-light">
+    <div class="section-wide">
+      <h2 class="section-title">What We Test &amp; Service</h2>
+      <p class="section-lead">Sprinkler system maintenance spans multiple components and inspection frequencies. EWF helps verify system condition, identify deficiencies, and document findings in accordance with NFPA 25 requirements.</p>
+      <div class="test-items-grid">
+        <div class="test-card">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Annual System Inspection</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-water"></i>
+          <span>End-of-Line Flushing</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-gauge"></i>
+          <span>PRV Testing &amp; Compliance</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          <span>Main Drain &amp; Flow Tests</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-bell"></i>
+          <span>Tamper Switch &amp; Supervisory Signals</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-eye"></i>
+          <span>Sprinkler Head Inspection</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-rotate"></i>
+          <span>Backflow Preventer Testing</span>
+        </div>
+        <div class="test-card">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>NFPA 25 Deficiency Documentation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why It Matters -->
+  <section class="bg-white">
+    <div class="section-narrow">
+      <h2 class="section-title">Why End-of-Line Flushing Matters</h2>
+      <p class="body-text">The deadlegs of a sprinkler system — branch lines where water sits without circulating — are prone to sediment buildup, corrosion, and microbiological growth over time. This accumulation can obstruct sprinkler heads and reduce system effectiveness when it's needed most.</p>
+      <div class="highlight-box">
+        <p>NFPA 25 requires internal inspection and flushing at defined intervals. EWF performs end-of-line flushing to remove accumulated debris, documents system condition, and identifies components that require follow-up or replacement.</p>
+      </div>
+      <p class="body-text">EWF supports sprinkler inspection and testing in parkades, strata buildings, commercial properties, high-rise residential buildings, and mixed-use properties throughout Vancouver and the Lower Mainland.</p>
+    </div>
+  </section>
+
+  <!-- Project Example: PRV -->
+  <section class="bg-light">
+    <div class="section-wide">
+      <h2 class="section-title">Project Example: NFPA 25 PRV Compliance Upgrade</h2>
+      <p class="section-lead">EWF recently completed a pressure reducing valve (PRV) inspection and compliance upgrade for a Vancouver property. Testing revealed the PRV was not maintaining design pressure — a common finding in aging systems that had not been serviced to NFPA 25 standards.</p>
+      <div class="photo-grid photo-grid-tall">
+        <div>
+          <img src="/prv-before.jpg" alt="Fire sprinkler PRV system before NFPA 25 compliance upgrade" loading="lazy" />
+          <p class="photo-caption">PRV assembly before compliance upgrade — failing pressure test</p>
+        </div>
+        <div>
+          <img src="/prv-after.jpg" alt="Fire sprinkler PRV system after NFPA 25 compliance upgrade" loading="lazy" />
+          <p class="photo-caption">PRV assembly after upgrade — meeting NFPA 25 design pressure requirements</p>
+        </div>
+      </div>
+      <img src="/sprinkler-flushing.jpg" alt="Fire sprinkler system flushing in an active parkade" class="article-image" loading="lazy" />
+      <p class="photo-caption" style="text-align:center; margin-top: -1.5rem; margin-bottom: 2rem;">End-of-line flushing in progress — removing accumulated sediment from system deadlegs</p>
+    </div>
+  </section>
+
+  <!-- Our Process -->
+  <section class="bg-white">
+    <div class="section-wide">
+      <h2 class="section-title section-title-center">Our Process</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3>Review System Type &amp; Inspection History</h3>
+          <p>Review system design, previous inspection records, and any known deficiencies to plan the scope of work.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3>Inspect &amp; Test Components</h3>
+          <p>Inspect sprinkler heads, control valves, alarm devices, and system components. Perform flow tests and PRV testing where required.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3>Flush &amp; Clean Where Required</h3>
+          <p>Perform end-of-line flushing to clear accumulated sediment from system deadlegs and document system condition before and after.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3>Document Results &amp; Follow-Up</h3>
+          <p>Provide NFPA 25-aligned deficiency documentation, inspection notes, and recommendations for required repairs or further review.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-light">
+    <div class="section-narrow">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details>
+          <summary>How often should fire sprinkler systems be inspected?</summary>
+          <div class="faq-answer">NFPA 25 requires quarterly, annual, and multi-year inspection intervals depending on the component. Annual inspections are required as a minimum for most sprinkler system elements. EWF can advise on the specific intervals that apply to your system.</div>
+        </details>
+        <details>
+          <summary>What is end-of-line flushing and why does it matter?</summary>
+          <div class="faq-answer">End-of-line flushing removes accumulated sediment, debris, and corrosion byproducts from system deadlegs — the branch lines where water sits and doesn't circulate. Without flushing, this buildup can obstruct sprinkler heads and reduce system effectiveness.</div>
+        </details>
+        <details>
+          <summary>What is a PRV and why does it need testing?</summary>
+          <div class="faq-answer">A pressure reducing valve (PRV) controls the water pressure delivered to the sprinkler system. NFPA 25 requires PRVs to be tested to confirm they maintain design pressure. A failed PRV can result in either insufficient pressure or pressure that exceeds system design limits — both of which compromise fire suppression performance.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="bg-white">
+    <div class="section-wide">
+      <h2 class="section-title">Related Services</h2>
+      <div class="related-grid">
+        <a href="/fire-alarm-systems" class="related-card">
+          <i class="fa-solid fa-bell"></i>
+          <span>Fire Alarm Inspection</span>
+        </a>
+        <a href="/smoke-control-systems" class="related-card">
+          <i class="fa-solid fa-wind"></i>
+          <span>Smoke Control Testing</span>
+        </a>
+        <a href="/emergency-lighting" class="related-card">
+          <i class="fa-solid fa-lightbulb"></i>
+          <span>Emergency Lighting</span>
+        </a>
+        <a href="/fire-extinguishers" class="related-card">
+          <i class="fa-solid fa-fire-extinguisher"></i>
+          <span>Fire Extinguishers</span>
+        </a>
+        <a href="/#contact" class="related-card">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Request a Quote</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta-section">
     <div class="cta-box">
-      <p>Request a Sprinkler Inspection or Consultation</p>
-      <a href="/#contact" class="cta-button">Contact Us</a>
+      <h2>Need Sprinkler Testing or Flushing?</h2>
+      <p>EWF provides professional sprinkler inspection and testing services throughout Vancouver and the Lower Mainland. Contact our team to schedule testing, flushing, PRV service, or deficiency documentation.</p>
+      <div class="cta-group">
+        <a href="/#contact" class="cta-button">Request Sprinkler Testing</a>
+        <a href="tel:6046495665" class="cta-button-secondary">Call 604-649-5665</a>
+      </div>
     </div>
-  </article>
+  </section>
 
   <footer>
     <p>&copy; 2025 EWF Fire Services. All rights reserved.</p>
@@ -333,7 +228,8 @@
       <img src="/assets/certifications/ulc-logo.png" alt="ULC Compliance" class="ulc-logo" />
       <img src="/assets/certifications/nfpa-logo.png" alt="NFPA Standards" class="nfpa-logo" />
     </div>
-    <p>Serving Vancouver & Greater Metro Vancouver.</p>
+    <p>Serving Vancouver &amp; Greater Metro Vancouver.</p>
   </footer>
+
 </body>
 </html>
