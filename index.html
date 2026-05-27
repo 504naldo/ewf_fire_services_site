@@ -324,9 +324,33 @@
       font-size: 0.875rem;
       font-weight: 600;
     }
-    
+
     .service-teaser a:hover {
       text-decoration: underline;
+    }
+
+    .service-link {
+      display: inline-block;
+      color: var(--fire);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .service-link:hover {
+      color: #8b4410;
+      text-decoration: underline;
+    }
+
+    .phone-number a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .phone-number a:hover {
+      color: var(--fire);
     }
     
     .cta-section {
@@ -716,7 +740,7 @@
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="EWF Fire Services Logo" class="logo" />
+    <a href="/"><img src="logo.png" alt="EWF Fire Services Logo" class="logo" /></a>
     <div>
       <nav>
         <a href="#services">Services</a>
@@ -724,7 +748,7 @@
         <a href="#about">About</a>
         <a href="#contact">Request a Quote</a>
       </nav>
-      <p class="phone-number"><i class="fas fa-phone"></i> Call Us: 604-649-5665</p>
+      <p class="phone-number"><i class="fas fa-phone"></i> <a href="tel:6046495665">Call Us: 604-649-5665</a></p>
     </div>
   </header>
 
