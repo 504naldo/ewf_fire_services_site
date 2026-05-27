@@ -714,8 +714,7 @@
         <a href="#services">Services</a>
         <a href="#certifications">Certifications</a>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#quote">Request a Quote</a>
+        <a href="#contact">Request a Quote</a>
       </nav>
       <p class="phone-number"><i class="fas fa-phone"></i> Call Us: 604-649-5665</p>
     </div>
@@ -725,7 +724,7 @@
     <div class="hero-content">
       <h1>Fire Protection & Life Safety Services for Vancouver Properties</h1>
       <p>Inspections, testing, and service for fire alarm, sprinkler, backflow, emergency lighting, and extinguishers — delivered by certified technicians.</p>
-      <a href="#quote" class="cta-button">Request a Quote</a>
+      <a href="#contact" class="cta-button">Request a Quote</a>
     </div>
   </section>
 
@@ -788,7 +787,7 @@
   </div>
 
   <div class="cta-section">
-    <a href="#quote" class="cta-button">Book an Inspection</a>
+    <a href="#contact" class="cta-button">Book an Inspection</a>
   </div>
 
   <section class="how-it-works">
@@ -830,13 +829,16 @@
   </section>
 
   <section id="contact" class="section">
-    <h2>Contact Us</h2>
+    <h2>Request a Quote</h2>
     <div class="contact-info">
       <p><strong>Phone:</strong> 604-649-5665</p>
     </div>
     <form action="https://formsubmit.co/office@ewandf.ca" method="POST">
-      <p class="form-intro">Tell us a bit about your property or service needs and a certified technician will respond promptly.</p>
+      <p class="form-intro">Tell us about your property and service needs. A certified technician will respond promptly.</p>
       <input type="hidden" name="_next" value="https://ewfservices.ca/thank-you.html" />
+      <input type="hidden" name="_replyto" value="{email}">
+      <label for="company" style="display: none;">Company / Property Name</label>
+      <input type="text" id="company" name="company" placeholder="Company / Property Name" />
       <label for="contact-name" style="display: none;">Contact Name</label>
       <input type="text" id="contact-name" name="name" placeholder="Contact Name" required />
       <label for="contact-email" style="display: none;">Email Address</label>
@@ -844,24 +846,9 @@
       <label for="contact-phone" style="display: none;">Phone Number</label>
       <input type="tel" id="contact-phone" name="phone" placeholder="Phone Number" />
       <label for="contact-message" style="display: none;">Service Details</label>
-      <textarea id="contact-message" name="message" rows="5" placeholder="Service Details"></textarea>
-      <p class="form-helper">Please include the property address and type of service if known.</p>
-      <input type="hidden" name="_replyto" value="{email}">
-      <button type="submit"><i class="fas fa-paper-plane"></i> Request Service</button>
+      <textarea id="contact-message" name="message" rows="5" placeholder="Service details (property address, type of service, etc.)"></textarea>
+      <button type="submit"><i class="fas fa-paper-plane"></i> Request a Quote</button>
       <p class="form-reassurance">Serving strata, commercial, and residential properties across Greater Vancouver.</p>
-    </form>
-  </section>
-
-  <section id="quote" class="section">
-    <h2>Request a Quote</h2>
-    <form action="https://formsubmit.co/office@ewandf.ca" method="POST">
-      <input type="hidden" name="_next" value="https://ewfservices.ca/thank-you.html" />
-      <input type="text" name="company" placeholder="Company Name" required />
-      <input type="text" name="contact" placeholder="Contact Name" required />
-      <input type="email" name="email" placeholder="Email Address" required />
-      <input type="tel" name="phone" placeholder="Phone Number" />
-      <textarea name="details" rows="4" placeholder="Tell us about your fire protection needs..."></textarea>
-      <button type="submit"><i class="fas fa-file-invoice"></i> Get Quote</button>
     </form>
   </section>
 
