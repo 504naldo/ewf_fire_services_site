@@ -179,7 +179,7 @@
     }
     
     .hero { 
-      background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('hero-background.jpg');
+      background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('hero-background.webp');
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
@@ -586,6 +586,18 @@
       margin-top: 1rem;
       line-height: 1.5;
     }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
     
     .work-image-section {
       max-width: 1100px;
@@ -871,15 +883,15 @@
       <p class="form-intro">Tell us about your property and service needs. A certified technician will respond promptly.</p>
       <input type="hidden" name="_next" value="https://ewfservices.ca/thank-you.html" />
       <input type="hidden" name="_replyto" value="{email}">
-      <label for="company" style="display: none;">Company / Property Name</label>
+      <label for="company" class="sr-only">Company / Property Name</label>
       <input type="text" id="company" name="company" placeholder="Company / Property Name" />
-      <label for="contact-name" style="display: none;">Contact Name</label>
+      <label for="contact-name" class="sr-only">Contact Name</label>
       <input type="text" id="contact-name" name="name" placeholder="Contact Name" required />
-      <label for="contact-email" style="display: none;">Email Address</label>
+      <label for="contact-email" class="sr-only">Email Address</label>
       <input type="email" id="contact-email" name="email" placeholder="Email Address" required />
-      <label for="contact-phone" style="display: none;">Phone Number</label>
+      <label for="contact-phone" class="sr-only">Phone Number</label>
       <input type="tel" id="contact-phone" name="phone" placeholder="Phone Number" />
-      <label for="contact-message" style="display: none;">Service Details</label>
+      <label for="contact-message" class="sr-only">Service Details</label>
       <textarea id="contact-message" name="message" rows="5" placeholder="Service details (property address, type of service, etc.)"></textarea>
       <button type="submit"><i class="fas fa-paper-plane"></i> Request a Quote</button>
       <p class="form-reassurance">Serving strata, commercial, and residential properties across Greater Vancouver.</p>
@@ -895,7 +907,7 @@
       </div>
       <p class="footer-service-area">Serving Vancouver & Greater Metro Vancouver.</p>
       <div class="footer-text">
-        <p>&copy; 2025 EWF Fire Services. All rights reserved.</p>
+        <p>&copy; 2025 EWF Fire Services. All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy" style="color: #aaa; font-size: 0.85rem;">Privacy Policy</a></p>
       </div>
     </div>
   </footer>
