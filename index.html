@@ -130,8 +130,8 @@
     .btn-primary:hover { background: var(--fire-dark); }
     .btn-secondary { color: white; border-color: rgba(255,255,255,.62); background: rgba(255,255,255,.06); }
     .btn-secondary:hover { background: rgba(255,255,255,.14); }
-    .hero-proof { display: flex; flex-wrap: wrap; gap: .75rem 1.4rem; margin-top: 2.1rem; color: rgba(255,255,255,.82); font-size: .9rem; font-weight: 700; }
-    .hero-proof span { display: inline-flex; align-items: center; gap: .45rem; }
+    .hero-proof { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem 1rem; margin-top: 2.1rem; max-width: 850px; color: rgba(255,255,255,.82); font-size: .9rem; font-weight: 700; }
+    .hero-proof span { display: flex; align-items: flex-start; gap: .45rem; line-height: 1.35; }
     .hero-proof i { color: #f1b077; }
 
     .standards-bar { background: var(--panel); border-bottom: 1px solid var(--line); }
@@ -239,7 +239,7 @@
       .hero { min-height: auto; }
       .hero-inner { padding: 5.5rem 0 5rem; }
       .hero-actions { display: grid; grid-template-columns: 1fr; }
-      .hero-proof { display: grid; gap: .65rem; }
+      .hero-proof { grid-template-columns: 1fr; gap: .65rem; }
       .standards-inner { grid-template-columns: 1fr; gap: .8rem; }
       section { padding: 4.2rem 0; }
       .services-grid, .trust-grid { grid-template-columns: 1fr; }
@@ -298,8 +298,8 @@
     <section class="hero">
       <div class="container hero-inner">
         <p class="eyebrow">Vancouver & Greater Vancouver</p>
-        <h1>Fire & life safety. Inspected. Documented. Ready.</h1>
-        <p>Fire alarm, sprinkler, smoke control, emergency lighting, extinguisher, and backflow services for strata, commercial, and multi-residential properties.</p>
+        <h1>Fire protection inspections &amp; testing for Greater Vancouver.</h1>
+        <p>Fire alarm, sprinkler, smoke control, emergency lighting, extinguisher, and backflow testingâ€”plus service and clear compliance documentation for strata, commercial, and multi-residential properties.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-calendar-check"></i> Request an Inspection</a>
           <a class="btn btn-secondary" href="tel:6046495665"><i class="fa-solid fa-phone"></i> Emergency Service</a>
