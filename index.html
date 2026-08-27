@@ -135,9 +135,10 @@
     .hero-proof i { color: #f1b077; }
 
     .standards-bar { background: var(--panel); border-bottom: 1px solid var(--line); }
-    .standards-inner { display: grid; grid-template-columns: 190px 1fr; gap: 2rem; align-items: center; padding: 1.6rem 0; }
-    .asttbc { display: flex; align-items: center; gap: .8rem; font-weight: 800; }
+    .standards-inner { display: grid; grid-template-columns: minmax(220px, 250px) minmax(0, 1fr); gap: 3rem; align-items: center; padding: 1.6rem 0; }
+    .asttbc { display: flex; flex-direction: column; align-items: flex-start; gap: .45rem; min-width: 0; padding-right: 2rem; border-right: 1px solid var(--line); font-weight: 800; }
     .asttbc img { height: 46px; width: auto; }
+    .asttbc span { color: var(--ink); font-size: .88rem; line-height: 1.25; }
     .standards-copy { color: var(--muted); font-size: .94rem; }
     .standards-copy strong { color: var(--ink); }
 
@@ -240,7 +241,8 @@
       .hero-inner { padding: 5.5rem 0 5rem; }
       .hero-actions { display: grid; grid-template-columns: 1fr; }
       .hero-proof { grid-template-columns: 1fr; gap: .65rem; }
-      .standards-inner { grid-template-columns: 1fr; gap: .8rem; }
+      .standards-inner { grid-template-columns: 1fr; gap: 1rem; }
+      .asttbc { padding-right: 0; padding-bottom: 1rem; border-right: 0; border-bottom: 1px solid var(--line); }
       section { padding: 4.2rem 0; }
       .services-grid, .trust-grid { grid-template-columns: 1fr; }
       .form-grid { grid-template-columns: 1fr; }
@@ -316,7 +318,7 @@
       <div class="container standards-inner">
         <div class="asttbc">
           <img src="/assets/certifications/asttbc-logo.png" alt="ASTTBC" />
-          <span>Qualified technicians</span>
+          <span>ASTTBC-certified technicians</span>
         </div>
         <p class="standards-copy"><strong>Standards-driven service:</strong> fire alarm work aligned with applicable CAN/ULC requirements, sprinkler work aligned with applicable NFPA requirements, and inspection practices informed by the BC Fire Code and AHJ direction.</p>
       </div>
