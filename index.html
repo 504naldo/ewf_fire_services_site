@@ -186,7 +186,7 @@
     .area-cities { font-weight: 800; color: var(--wind); }
 
     .contact { background: #f5f6f6; }
-    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 2rem; margin-top: 2.4rem; align-items: start; }
+    .contact-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; margin-top: 2.4rem; align-items: start; }
     .contact-card { background: #182024; color: white; border-radius: 16px; padding: 2rem; }
     .contact-card h3 { font-size: 1.6rem; }
     .contact-card p { color: rgba(255,255,255,.66); margin-top: .8rem; }
@@ -263,6 +263,10 @@
     }
   </style>
 
+  <link rel="stylesheet" href="/navigation.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="/nav.js" defer></script>
+  <script src="/enquiry.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZJPP9CTGQ"></script>
   <script>
@@ -283,7 +287,18 @@
       </a>
 
       <nav id="primary-nav" aria-label="Primary navigation">
-        <a href="#services">Services</a>
+        <details class="service-menu">
+          <summary>Services</summary>
+          <div class="service-menu-links">
+            <a href="/fire-alarm-systems">Fire Alarm</a>
+            <a href="/sprinkler-systems">Sprinklers</a>
+            <a href="/smoke-control-systems">Smoke Control</a>
+            <a href="/emergency-lighting">Emergency Lighting</a>
+            <a href="/fire-extinguishers">Fire Extinguishers</a>
+            <a href="/backflow-testing">Backflow Testing</a>
+            <a href="/#services">All Services</a>
+          </div>
+        </details>
         <a href="#why-ewf">Why EWF</a>
         <a href="#work">Field Work</a>
         <a href="#contact">Request a Quote</a>
@@ -368,7 +383,7 @@
             <div class="service-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
             <h3>Backflow Testing</h3>
             <p>Certified testing and documentation for backflow prevention assemblies serving fire protection and building water systems.</p>
-            <a href="#contact">Request backflow testing <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="/backflow-testing">Explore backflow testing <i class="fa-solid fa-arrow-right"></i></a>
           </article>
         </div>
       </div>
@@ -470,23 +485,15 @@
     <section class="contact" id="contact">
       <div class="container">
         <p class="eyebrow">Request service</p>
-        <h2 class="section-title">Give us the basics. We'll take it from there.</h2>
-        <p class="section-lead">A little property information upfront helps EWF respond faster and makes it easier to determine the right inspection or service scope.</p>
+        <h2 class="section-title">Request a quote for your property</h2>
+        <p class="section-lead">Tell us which services you need and where the property is located. EWF will review your request and contact you to confirm scope and availability.</p>
 
         <div class="contact-grid">
-          <aside class="contact-card">
-            <h3>EWF Fire Services</h3>
-            <p>Fire protection and life-safety inspection, testing, service, and documentation for Greater Vancouver properties.</p>
-            <div class="contact-links">
-              <a href="tel:6046495665"><i class="fa-solid fa-phone"></i><span><strong>604-649-5665</strong><br>Call for service or urgent support</span></a>
-              <a href="mailto:office@ewandf.ca"><i class="fa-solid fa-envelope"></i><span>office@ewandf.ca</span></a>
-              <div><i class="fa-solid fa-location-dot"></i><span>#150-628 East Kent Avenue South<br>Vancouver, BC V5X 0B2</span></div>
-            </div>
-          </aside>
-
-          <form action="https://formsubmit.co/office@ewandf.ca" method="POST">
+          <form id="enquiry-form" action="https://formsubmit.co/office@ewandf.ca" method="POST">
             <input type="hidden" name="_next" value="https://ewfservices.ca/thank-you.html" />
             <input type="hidden" name="_subject" value="New EWF website service request" />
+            <input type="hidden" name="source_page" value="/" />
+            <p class="form-intro">Fields marked * are required. Not sure which service you need? Select “Not sure” and describe the property below.</p>
             <div class="honeypot" aria-hidden="true">
               <label for="website">Website</label>
               <input type="text" id="website" name="_honey" tabindex="-1" autocomplete="off" />
@@ -505,6 +512,7 @@
                   <option>Fire Extinguishers</option>
                   <option>Multiple Services</option>
                   <option>Emergency / Troubleshooting</option>
+                  <option>Not sure</option>
                 </select>
               </div>
               <div class="field">
@@ -516,10 +524,21 @@
                   <option>Industrial</option>
                   <option>Mixed Use</option>
                   <option>Other</option>
+                  <option>Not sure</option>
+                </select>
+              </div>
+              <div class="field full" id="request-type-field" hidden>
+                <label for="request-type">Sprinkler service (optional)</label>
+                <select id="request-type" name="request_type" disabled>
+                  <option value="">Select a service, or leave blank if unsure</option>
+                  <option value="annual-inspection">Annual inspection</option>
+                  <option value="five-year-inspection">Five-year internal inspection</option>
+                  <option value="prv-service">Pressure reducing valve (PRV) service</option>
+                  <option value="deficiency-follow-up">Deficiency follow-up</option>
                 </select>
               </div>
               <div class="field full">
-                <label for="property-address">Property address</label>
+                <label for="property-address">Property address (optional)</label>
                 <input id="property-address" name="property_address" type="text" autocomplete="street-address" placeholder="Street address and city" />
               </div>
               <div class="field">
@@ -527,7 +546,7 @@
                 <input id="contact-name" name="name" type="text" autocomplete="name" required />
               </div>
               <div class="field">
-                <label for="company">Company / property name</label>
+                <label for="company">Company / property name (optional)</label>
                 <input id="company" name="company" type="text" autocomplete="organization" />
               </div>
               <div class="field">
@@ -535,18 +554,28 @@
                 <input id="contact-email" name="email" type="email" autocomplete="email" required />
               </div>
               <div class="field">
-                <label for="contact-phone">Phone</label>
+                <label for="contact-phone">Phone (optional)</label>
                 <input id="contact-phone" name="phone" type="tel" autocomplete="tel" />
               </div>
               <div class="field full">
-                <label for="contact-message">Service details</label>
-                <textarea id="contact-message" name="message" placeholder="Tell us what you need, preferred timing, known deficiencies, building size, or anything else that helps us understand the scope."></textarea>
+                <label for="contact-message">Service details (optional)</label>
+                <textarea id="contact-message" name="message" placeholder="Include preferred timing, building size, known deficiencies and any access or tenant coordination needs. You can mention an existing inspection report."></textarea>
               </div>
             </div>
 
             <button class="submit-btn" type="submit"><i class="fa-solid fa-paper-plane"></i> Send Service Request</button>
             <p class="form-note">Your information is used to respond to your service request. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
           </form>
+
+          <aside class="contact-card">
+            <h3>EWF Fire Services</h3>
+            <p>Fire protection and life-safety inspection, testing, service, and documentation for Greater Vancouver properties.</p>
+            <div class="contact-links">
+              <a href="tel:6046495665"><i class="fa-solid fa-phone"></i><span><strong>604-649-5665</strong><br>Call for service or urgent support</span></a>
+              <a href="mailto:office@ewandf.ca"><i class="fa-solid fa-envelope"></i><span>office@ewandf.ca</span></a>
+              <div><i class="fa-solid fa-location-dot"></i><span>#150-628 East Kent Avenue South<br>Vancouver, BC V5X 0B2</span></div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -565,6 +594,7 @@
           <a href="/smoke-control-systems">Smoke Control</a>
           <a href="/emergency-lighting">Emergency Lighting</a>
           <a href="/fire-extinguishers">Extinguishers</a>
+          <a href="/backflow-testing">Backflow</a>
           <a href="/privacy-policy">Privacy</a>
         </div>
       </div>
@@ -585,26 +615,6 @@
     <a href="#contact"><i class="fa-solid fa-file-signature"></i> Request Quote</a>
   </div>
 
-  <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const primaryNav = document.getElementById('primary-nav');
 
-    menuToggle?.addEventListener('click', () => {
-      const isOpen = primaryNav.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-      menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-      menuToggle.querySelector('i').className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-    });
-
-    primaryNav?.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        primaryNav.classList.remove('open');
-        menuToggle?.setAttribute('aria-expanded', 'false');
-        menuToggle?.setAttribute('aria-label', 'Open menu');
-        const icon = menuToggle?.querySelector('i');
-        if (icon) icon.className = 'fa-solid fa-bars';
-      });
-    });
-  </script>
 </body>
 </html>

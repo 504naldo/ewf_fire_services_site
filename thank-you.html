@@ -50,7 +50,7 @@
       border-top: 4px solid var(--fire);
     }
     
-    .thank-you-container i {
+    .thank-you-container > .status-icon {
       font-size: 4rem;
       color: var(--fire);
       margin-bottom: 1.5rem;
@@ -98,11 +98,12 @@
         font-size: 2rem;
       }
       
-      .thank-you-container i {
+      .thank-you-container > .status-icon {
         font-size: 3rem;
       }
     }
   </style>
+  <script src="/enquiry.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZJPP9CTGQ"></script>
   <script>
@@ -114,9 +115,10 @@
 </head>
 <body>
   <div class="thank-you-container">
-    <i class="fas fa-check-circle"></i>
+    <img src="/logo.png" alt="EWF Fire Services" style="width:180px;max-width:100%;height:auto;margin:0 auto 1.5rem;display:block" />
+    <i class="fas fa-check-circle status-icon" aria-hidden="true"></i>
     <h1>Thank You!</h1>
-    <p>We've received your message and will get back to you as soon as possible. Our team typically responds within 24 hours.</p>
+    <p>Thank you for contacting EWF Fire Services. For time-sensitive service needs or to follow up on your request, call <a href="tel:6046495665">604-649-5665</a> or email <a href="mailto:office@ewandf.ca">office@ewandf.ca</a>.</p>
     <a href="/" class="btn-home"><i class="fas fa-home"></i> Return to Home</a>
   </div>
 </body>

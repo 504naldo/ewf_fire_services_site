@@ -13,7 +13,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/navigation.css" />
+  <script>document.documentElement.classList.add('js');</script>
   <script src="/nav.js" defer></script>
+  <script src="/enquiry.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZJPP9CTGQ"></script>
   <script>
@@ -28,7 +31,18 @@
   <header>
     <a href="/"><img src="logo.png" alt="EWF Fire Services" class="logo" /></a>
     <nav id="primary-nav" aria-label="Primary navigation">
-      <a href="/#services">Services</a>
+      <details class="service-menu">
+          <summary>Services</summary>
+          <div class="service-menu-links">
+            <a href="/fire-alarm-systems">Fire Alarm</a>
+            <a href="/sprinkler-systems">Sprinklers</a>
+            <a href="/smoke-control-systems">Smoke Control</a>
+            <a href="/emergency-lighting">Emergency Lighting</a>
+            <a href="/fire-extinguishers">Fire Extinguishers</a>
+            <a href="/backflow-testing">Backflow Testing</a>
+            <a href="/#services">All Services</a>
+          </div>
+        </details>
       <a href="/#why-ewf">About</a>
       <a href="/#contact">Request a Quote</a>
       <a href="tel:6046495665" class="nav-call">Call 604-649-5665</a>
@@ -50,7 +64,7 @@
   <section class="bg-white">
     <div class="section-narrow">
 
-      <p class="standards-line">Last updated: May 28, 2026</p>
+      <p class="standards-line">Last updated: October 14, 2026</p>
 
       <h2 class="section-title" style="margin-top: 2rem;">What We Collect</h2>
       <p class="body-text">When you submit a contact or quote request form on this website, we collect the information you provide — which may include your name, company or property name, email address, phone number, and service details.</p>
@@ -58,6 +72,10 @@
 
       <h2 class="section-title" style="margin-top: 2rem;">How We Use Your Information</h2>
       <p class="body-text">Your contact information is used solely to respond to your service inquiry and, where applicable, to schedule inspections or services at your property. We do not use your information for commercial email marketing, and we do not sell or share it with third parties except where required to deliver the service you requested.</p>
+
+      <h2 class="section-title" style="margin-top: 2rem;">Website Analytics and Form Processing</h2>
+      <p class="body-text">We use Google Analytics to understand how visitors use this website, including service-page visits, phone and email link clicks, and contact-form handoffs. Our custom enquiry events include the service category and page path, but do not include the name, email address, phone number, property address, company name or message entered in the form.</p>
+      <p class="body-text">Contact requests are processed through FormSubmit and sent to EWF. To recognise a return from the form provider, the website temporarily stores a random identifier, time, service category and source page in your browser tab. This record is used once, is valid for 30 minutes and does not contain your contact details. A return to the website does not confirm email delivery.</p>
 
       <h2 class="section-title" style="margin-top: 2rem;">Data Retention</h2>
       <p class="body-text">Contact form submissions and associated correspondence are retained for as long as necessary to fulfill the business purpose for which they were collected, or as required by applicable law.</p>
@@ -78,7 +96,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 EWF Fire Services. All rights reserved.</p>
+    <p>&copy; 2026 EWF Fire Services. All rights reserved.</p>
     <div class="footer-logos">
       <img src="/assets/certifications/asttbc-logo.png" alt="ASTTBC Certified Technicians" class="asttbc-logo" />
       <img src="/assets/certifications/ulc-logo.png" alt="ULC Compliance" class="ulc-logo" />

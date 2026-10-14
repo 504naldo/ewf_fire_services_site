@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Fire extinguisher inspection and service in Vancouver, BC. EWF provides annual inspections, 6-year maintenance, hydrostatic testing, recharge, and NFPA 10 compliance documentation for strata and commercial buildings." />
+  <meta name="description" content="Fire extinguisher inspection and service in Vancouver, BC. EWF provides inspections, type-specific maintenance, hydrostatic testing, recharge, and documentation for strata and commercial buildings." />
   <title>Fire Extinguisher Inspection & Service in Vancouver, BC | EWF Fire Services</title>
   <link rel="canonical" href="https://ewfservices.ca/fire-extinguishers" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="EWF Fire Services" />
   <meta property="og:title" content="Fire Extinguisher Inspection & Service in Vancouver, BC | EWF Fire Services" />
-  <meta property="og:description" content="Fire extinguisher inspection and service in Vancouver, BC. EWF provides annual inspections, 6-year maintenance, hydrostatic testing, recharge, and NFPA 10 compliance documentation." />
+  <meta property="og:description" content="Fire extinguisher inspection and service in Vancouver, BC. EWF provides inspections, type-specific maintenance, hydrostatic testing, recharge, and documentation." />
   <meta property="og:url" content="https://ewfservices.ca/fire-extinguishers" />
   <meta property="og:image" content="https://ewfservices.ca/work-in-progress.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Fire Extinguisher Inspection & Service in Vancouver, BC | EWF Fire Services" />
-  <meta name="twitter:description" content="Fire extinguisher inspection and service in Vancouver, BC. EWF provides annual inspections, 6-year maintenance, hydrostatic testing, recharge, and NFPA 10 compliance documentation." />
+  <meta name="twitter:description" content="Fire extinguisher inspection and service in Vancouver, BC. EWF provides inspections, type-specific maintenance, hydrostatic testing, recharge, and documentation." />
   <meta name="twitter:image" content="https://ewfservices.ca/work-in-progress.jpg" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/navigation.css" />
+  <script>document.documentElement.classList.add('js');</script>
   <script src="/nav.js" defer></script>
+  <script src="/enquiry.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,7 +36,7 @@
         "name": "How often do fire extinguishers need to be inspected in BC?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Fire extinguishers require annual inspection under NFPA 10 and the BC Fire Code. A 6-year internal maintenance service is also required, along with hydrostatic pressure testing every 5 to 12 years depending on extinguisher type."
+          "text": "Inspection, internal maintenance and hydrostatic testing requirements depend on the extinguisher type, service history, manufacturer instructions and applicable requirements. A six-year internal maintenance interval does not apply to every extinguisher. EWF can review your units and records to identify the service needed."
         }
       },
       {
@@ -46,10 +49,10 @@
       },
       {
         "@type": "Question",
-        "name": "Can EWF recharge and replace fire extinguishers on site?",
+        "name": "How are recharge and replacement services arranged?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. EWF can recharge extinguishers following use or following the 6-year maintenance interval, replace units that are damaged or past service life, and provide updated compliance tags and documentation."
+          "text": "EWF can assess recharge, maintenance or replacement needs and provide service documentation. Before scheduling, confirm which work can be completed on site, which units may need workshop service and any replacement arrangements for your property."
         }
       }
     ]
@@ -69,12 +72,23 @@
   <header>
     <a href="/"><img src="logo.png" alt="EWF Fire Services" class="logo" /></a>
     <nav id="primary-nav" aria-label="Primary navigation">
-      <a href="/#services">Services</a>
+      <details class="service-menu">
+          <summary>Services</summary>
+          <div class="service-menu-links">
+            <a href="/fire-alarm-systems">Fire Alarm</a>
+            <a href="/sprinkler-systems">Sprinklers</a>
+            <a href="/smoke-control-systems">Smoke Control</a>
+            <a href="/emergency-lighting">Emergency Lighting</a>
+            <a href="/fire-extinguishers" aria-current="page">Fire Extinguishers</a>
+            <a href="/backflow-testing">Backflow Testing</a>
+            <a href="/#services">All Services</a>
+          </div>
+        </details>
       <a href="/#why-ewf">About</a>
-      <a href="/#contact">Request a Quote</a>
+      <a href="/?service=fire-extinguishers#contact">Request a Quote</a>
       <a href="tel:6046495665" class="nav-call">Call 604-649-5665</a>
     </nav>
-    <div class="phone-number">Call Us: 604-649-5665</div>
+    <div class="phone-number"><a href="tel:6046495665">Call Us: 604-649-5665</a></div>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
       <svg class="icon-open" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -85,11 +99,21 @@
   <section class="page-hero">
     <div class="page-hero-content">
       <h1>Fire Extinguisher Inspection &amp; Service in Vancouver, BC</h1>
-      <p>Annual inspections, 6-year maintenance, hydrostatic testing, recharge, and NFPA 10 compliance documentation for strata, commercial, and institutional properties throughout Vancouver and the Lower Mainland.</p>
+      <p>Inspection, maintenance, hydrostatic testing, recharge and documentation for strata, commercial and institutional properties across Metro Vancouver. Service requirements are assessed for the extinguisher type and condition.</p>
       <div class="hero-cta-group">
-        <a href="/#contact" class="cta-button">Request an Inspection</a>
+        <a href="/?service=fire-extinguishers#contact" class="cta-button">Request an Inspection</a>
         <a href="tel:6046495665" class="cta-button-outline">Call 604-649-5665</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Property planning -->
+  <section class="bg-white service-planning">
+    <div class="section-narrow">
+      <h2 class="section-title">Plan service around your building</h2>
+      <p class="body-text"><strong>For your quote:</strong> Include the property address, approximate extinguisher count and any known types or service dates. Tell us if a unit has been used, is damaged or has been flagged in an inspection.</p>
+      <p class="body-text"><strong>Access and service arrangements:</strong> Mention locked areas and tenant operating hours. Ask EWF to confirm which work can be completed on site, which units may need workshop service, and any replacement arrangements before scheduling.</p>
+      <p class="body-text"><strong>A clear service scope:</strong> Maintenance and pressure-test requirements depend on the extinguisher type and service history. EWF will review the requested work and document the findings.</p>
     </div>
   </section>
 
@@ -114,7 +138,7 @@
         </div>
         <div class="test-card">
           <i class="fa-solid fa-screwdriver-wrench"></i>
-          <span>6-Year Internal Maintenance</span>
+          <span>Internal Maintenance, Including Applicable 6-Year Service</span>
         </div>
         <div class="test-card">
           <i class="fa-solid fa-flask"></i>
@@ -150,7 +174,7 @@
       <h2 class="section-title">More Than a Tag</h2>
       <p class="body-text">A tag on a fire extinguisher confirms it was inspected — but inspection quality matters. An extinguisher that is low on pressure, improperly mounted, blocked from access, or past its service life may fail when it's needed most.</p>
       <div class="highlight-box">
-        <p>NFPA 10 requires annual inspection, 6-year internal maintenance, and hydrostatic pressure testing at intervals that vary by extinguisher type. Non-compliant extinguishers can create liability for building owners and may not be recognized as adequate by the Authority Having Jurisdiction.</p>
+        <p>Internal maintenance and hydrostatic testing intervals vary by extinguisher type and service history. Review the unit label and service records when planning work; a six-year maintenance interval is not universal. Used or damaged extinguishers also need assessment for appropriate service or replacement.</p>
       </div>
       <p class="body-text">EWF provides clear documentation of each unit's condition, service history, and required follow-up — giving property managers and strata councils a complete record for AHJ inspections and insurance purposes.</p>
     </div>
@@ -174,7 +198,7 @@
         <div class="process-step">
           <div class="step-number">3</div>
           <h3>Service, Recharge, or Replace</h3>
-          <p>Perform 6-year maintenance, hydrostatic testing, or recharge as required. Replace units that are damaged, outdated, or past service life.</p>
+          <p>Perform the maintenance, hydrostatic testing or recharge applicable to each unit. Confirm service arrangements and assess damaged or expired units for replacement.</p>
         </div>
         <div class="process-step">
           <div class="step-number">4</div>
@@ -192,15 +216,15 @@
       <div class="faq-list">
         <details>
           <summary>How often do fire extinguishers need to be inspected in BC?</summary>
-          <div class="faq-answer">Fire extinguishers require annual inspection under NFPA 10 and the BC Fire Code. A 6-year internal maintenance service is also required, along with hydrostatic pressure testing every 5 to 12 years depending on extinguisher type.</div>
+          <div class="faq-answer">Inspection, internal maintenance and hydrostatic testing requirements depend on the extinguisher type, service history, manufacturer instructions and applicable requirements. A six-year internal maintenance interval does not apply to every extinguisher. EWF can review your units and records to identify the service needed.</div>
         </details>
         <details>
           <summary>What happens during an annual fire extinguisher inspection?</summary>
-          <div class="faq-answer">EWF technicians check the extinguisher's pressure gauge, tamper seal, pull pin, mounting bracket, accessibility, physical condition, and tag. Any unit that fails inspection is flagged for recharge, maintenance, or replacement with a clear explanation of what's required.</div>
+          <div class="faq-answer">EWF technicians check the extinguisher's pressure gauge, tamper seal, pull pin, mounting bracket, accessibility, physical condition, and tag. Any unit that fails inspection is flagged for recharge, maintenance, or replacement with a clear explanation of what is required.</div>
         </details>
         <details>
-          <summary>Can EWF recharge and replace fire extinguishers on site?</summary>
-          <div class="faq-answer">Yes. EWF can recharge extinguishers following use or following the 6-year maintenance interval, replace units that are damaged or past service life, and provide updated compliance tags and documentation.</div>
+          <summary>How are recharge and replacement services arranged?</summary>
+          <div class="faq-answer">EWF can assess recharge, maintenance or replacement needs and provide service documentation. Before scheduling, confirm which work can be completed on site, which units may need workshop service and any replacement arrangements for your property.</div>
         </details>
       </div>
     </div>
@@ -227,7 +251,11 @@
           <i class="fa-solid fa-lightbulb"></i>
           <span>Emergency Lighting</span>
         </a>
-        <a href="/#contact" class="related-card">
+        <a href="/backflow-testing" class="related-card">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          <span>Backflow Testing</span>
+        </a>
+        <a href="/?service=fire-extinguishers#contact" class="related-card">
           <i class="fa-solid fa-envelope"></i>
           <span>Request a Quote</span>
         </a>
@@ -239,16 +267,16 @@
   <section class="final-cta-section">
     <div class="cta-box">
       <h2>Need Fire Extinguisher Service?</h2>
-      <p>EWF provides professional fire extinguisher inspection and service throughout Vancouver and the Lower Mainland. Contact our team to schedule annual inspection, 6-year maintenance, hydrostatic testing, or recharge.</p>
+      <p>EWF provides professional fire extinguisher inspection and service throughout Vancouver and the Lower Mainland. Contact our team to discuss inspection, type-specific maintenance, hydrostatic testing or recharge.</p>
       <div class="cta-group">
-        <a href="/#contact" class="cta-button">Request an Inspection</a>
+        <a href="/?service=fire-extinguishers#contact" class="cta-button">Request an Inspection</a>
         <a href="tel:6046495665" class="cta-button-secondary">Call 604-649-5665</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 EWF Fire Services. All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy" style="color: #aaa; font-size: 0.85rem;">Privacy Policy</a></p>
+    <p>&copy; 2026 EWF Fire Services. All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy" style="color: #aaa; font-size: 0.85rem;">Privacy Policy</a></p>
     <div class="footer-logos">
       <img src="/assets/certifications/asttbc-logo.png" alt="ASTTBC Certified Technicians" class="asttbc-logo" />
       <img src="/assets/certifications/ulc-logo.png" alt="ULC Compliance" class="ulc-logo" />
@@ -257,5 +285,9 @@
     <p>Serving Vancouver &amp; Greater Metro Vancouver.</p>
   </footer>
 
+  <div class="mobile-action-bar" aria-label="Quick contact actions">
+    <a href="tel:6046495665">Call EWF</a>
+    <a href="/?service=fire-extinguishers#contact">Request Quote</a>
+  </div>
 </body>
 </html>

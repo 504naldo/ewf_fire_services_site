@@ -22,7 +22,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/navigation.css" />
+  <script>document.documentElement.classList.add('js');</script>
   <script src="/nav.js" defer></script>
+  <script src="/enquiry.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,7 +44,7 @@
         "name": "What is a 5-year internal inspection and why does it matter?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A 5-year internal sprinkler inspection involves opening selected sections of sprinkler piping to check for corrosion, obstructions, or buildup that could affect system performance. It does more than satisfy code requirements — it helps identify potential issues early, extends the life of the system, and may prevent costly repairs down the road."
+          "text": "A 5-year internal sprinkler inspection involves opening selected sections of sprinkler piping to check for corrosion, obstructions, or buildup that could affect system performance. In many buildings, each floor's wet sprinkler zone is considered a separate sprinkler system once it passes through its own control valve and flow switch. The inspection does more than satisfy code requirements — it helps identify potential issues early, extends the life of the system, and may prevent costly repairs down the road."
         }
       },
       {
@@ -69,12 +72,23 @@
   <header>
     <a href="/"><img src="logo.png" alt="EWF Fire Services" class="logo" /></a>
     <nav id="primary-nav" aria-label="Primary navigation">
-      <a href="/#services">Services</a>
+      <details class="service-menu">
+          <summary>Services</summary>
+          <div class="service-menu-links">
+            <a href="/fire-alarm-systems">Fire Alarm</a>
+            <a href="/sprinkler-systems" aria-current="page">Sprinklers</a>
+            <a href="/smoke-control-systems">Smoke Control</a>
+            <a href="/emergency-lighting">Emergency Lighting</a>
+            <a href="/fire-extinguishers">Fire Extinguishers</a>
+            <a href="/backflow-testing">Backflow Testing</a>
+            <a href="/#services">All Services</a>
+          </div>
+        </details>
       <a href="/#why-ewf">About</a>
-      <a href="/#contact">Request a Quote</a>
+      <a href="/?service=sprinkler#contact">Request a Quote</a>
       <a href="tel:6046495665" class="nav-call">Call 604-649-5665</a>
     </nav>
-    <div class="phone-number">Call Us: 604-649-5665</div>
+    <div class="phone-number"><a href="tel:6046495665">Call Us: 604-649-5665</a></div>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
       <svg class="icon-open" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -87,8 +101,23 @@
       <h1>Sprinkler System Testing &amp; NFPA 25 Compliance in Vancouver, BC</h1>
       <p>5-Year internal inspections, PRV testing, flow tests, and deficiency documentation for strata, commercial, and parkade sprinkler systems throughout Vancouver and the Lower Mainland.</p>
       <div class="hero-cta-group">
-        <a href="/#contact" class="cta-button">Request Sprinkler Testing</a>
+        <a href="/?service=sprinkler#contact" class="cta-button">Request Sprinkler Testing</a>
         <a href="tel:6046495665" class="cta-button-outline">Call 604-649-5665</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Property planning -->
+  <section class="bg-white service-planning">
+    <div class="section-narrow">
+      <h2 class="section-title">Plan your sprinkler service</h2>
+      <p class="body-text"><strong>Choose the work you need:</strong> Select a request below, or describe the issue in the enquiry form. Include the property address and any previous inspection report or outstanding deficiency list.</p>
+      <p class="body-text"><strong>Access and timing:</strong> Mention sprinkler rooms, parkade access, tenant operating hours and known system issues. Confirm any isolation, water discharge and service interruption arrangements with EWF before work is scheduled.</p>
+      <div class="related-grid" aria-label="Sprinkler service requests">
+        <a href="/?service=sprinkler&amp;request=annual-inspection#contact" class="related-card"><span>Annual inspection</span></a>
+        <a href="/?service=sprinkler&amp;request=five-year-inspection#contact" class="related-card"><span>5-year internal inspection</span></a>
+        <a href="/?service=sprinkler&amp;request=prv-service#contact" class="related-card"><span>PRV testing or service</span></a>
+        <a href="/?service=sprinkler&amp;request=deficiency-follow-up#contact" class="related-card"><span>Deficiency follow-up</span></a>
       </div>
     </div>
   </section>
@@ -247,7 +276,11 @@
           <i class="fa-solid fa-fire-extinguisher"></i>
           <span>Fire Extinguishers</span>
         </a>
-        <a href="/#contact" class="related-card">
+        <a href="/backflow-testing" class="related-card">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          <span>Backflow Testing</span>
+        </a>
+        <a href="/?service=sprinkler#contact" class="related-card">
           <i class="fa-solid fa-envelope"></i>
           <span>Request a Quote</span>
         </a>
@@ -261,14 +294,14 @@
       <h2>Need Sprinkler Testing or a 5-Year Internal Inspection?</h2>
       <p>EWF provides professional sprinkler inspection and testing services throughout Vancouver and the Lower Mainland. Contact our team to schedule testing, a 5-year internal inspection, PRV service, or deficiency documentation.</p>
       <div class="cta-group">
-        <a href="/#contact" class="cta-button">Request Sprinkler Testing</a>
+        <a href="/?service=sprinkler#contact" class="cta-button">Request Sprinkler Testing</a>
         <a href="tel:6046495665" class="cta-button-secondary">Call 604-649-5665</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 EWF Fire Services. All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy" style="color: #aaa; font-size: 0.85rem;">Privacy Policy</a></p>
+    <p>&copy; 2026 EWF Fire Services. All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy" style="color: #aaa; font-size: 0.85rem;">Privacy Policy</a></p>
     <div class="footer-logos">
       <img src="/assets/certifications/asttbc-logo.png" alt="ASTTBC Certified Technicians" class="asttbc-logo" />
       <img src="/assets/certifications/ulc-logo.png" alt="ULC Compliance" class="ulc-logo" />
@@ -277,5 +310,9 @@
     <p>Serving Vancouver &amp; Greater Metro Vancouver.</p>
   </footer>
 
+  <div class="mobile-action-bar" aria-label="Quick contact actions">
+    <a href="tel:6046495665">Call EWF</a>
+    <a href="/?service=sprinkler#contact">Request Quote</a>
+  </div>
 </body>
 </html>

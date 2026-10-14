@@ -22,7 +22,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/navigation.css" />
+  <script>document.documentElement.classList.add('js');</script>
   <script src="/nav.js" defer></script>
+  <script src="/enquiry.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -69,12 +72,23 @@
   <header>
     <a href="/"><img src="logo.png" alt="EWF Fire Services" class="logo" /></a>
     <nav id="primary-nav" aria-label="Primary navigation">
-      <a href="/#services">Services</a>
+      <details class="service-menu">
+          <summary>Services</summary>
+          <div class="service-menu-links">
+            <a href="/fire-alarm-systems" aria-current="page">Fire Alarm</a>
+            <a href="/sprinkler-systems">Sprinklers</a>
+            <a href="/smoke-control-systems">Smoke Control</a>
+            <a href="/emergency-lighting">Emergency Lighting</a>
+            <a href="/fire-extinguishers">Fire Extinguishers</a>
+            <a href="/backflow-testing">Backflow Testing</a>
+            <a href="/#services">All Services</a>
+          </div>
+        </details>
       <a href="/#why-ewf">About</a>
-      <a href="/#contact">Request a Quote</a>
+      <a href="/?service=fire-alarm#contact">Request a Quote</a>
       <a href="tel:6046495665" class="nav-call">Call 604-649-5665</a>
     </nav>
-    <div class="phone-number">Call Us: 604-649-5665</div>
+    <div class="phone-number"><a href="tel:6046495665">Call Us: 604-649-5665</a></div>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
       <svg class="icon-open" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -84,12 +98,22 @@
   <!-- Hero -->
   <section class="page-hero">
     <div class="page-hero-content">
-      <h1>Fire Alarm System Inspection &amp; Testing in Vancouver, BC</h1>
-      <p>Operational testing, deficiency reporting, and compliance documentation for fire alarm systems in strata, commercial, and high-rise buildings throughout Vancouver and the Lower Mainland.</p>
+      <h1>Fire Alarm Inspections for Strata &amp; Commercial Properties</h1>
+      <p>Inspection, testing and deficiency follow-up for property managers, strata representatives and commercial buildings across Metro Vancouver. Request a quote with your property details and preferred timing.</p>
       <div class="hero-cta-group">
-        <a href="/#contact" class="cta-button">Request an Inspection</a>
+        <a href="/?service=fire-alarm#contact" class="cta-button">Request a Fire Alarm Inspection Quote</a>
         <a href="tel:6046495665" class="cta-button-outline">Call 604-649-5665</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Property planning -->
+  <section class="bg-white service-planning">
+    <div class="section-narrow">
+      <h2 class="section-title">Plan your fire alarm inspection</h2>
+      <p class="body-text"><strong>For your quote:</strong> Include the property address, building type, preferred timing and whether you need a scheduled inspection or deficiency follow-up. Mention a previous inspection report if one is available.</p>
+      <p class="body-text"><strong>Access and coordination:</strong> Tell us about suite or tenant access, on-site contacts and any restrictions on alarm testing. Elevator, smoke control or other system interfaces may require coordination with the appropriate trades.</p>
+      <p class="body-text"><strong>Clear follow-up:</strong> EWF documents observed deficiencies and testing results. We will review the requested scope and access needs with you before scheduling.</p>
     </div>
   </section>
 
@@ -235,7 +259,11 @@
           <i class="fa-solid fa-fire-extinguisher"></i>
           <span>Fire Extinguishers</span>
         </a>
-        <a href="/#contact" class="related-card">
+        <a href="/backflow-testing" class="related-card">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          <span>Backflow Testing</span>
+        </a>
+        <a href="/?service=fire-alarm#contact" class="related-card">
           <i class="fa-solid fa-envelope"></i>
           <span>Request a Quote</span>
         </a>
@@ -249,14 +277,14 @@
       <h2>Need a Fire Alarm Inspection?</h2>
       <p>EWF provides professional fire alarm inspection and testing services throughout Vancouver and the Lower Mainland. Contact our team to schedule an inspection, discuss deficiencies, or request compliance documentation support.</p>
       <div class="cta-group">
-        <a href="/#contact" class="cta-button">Request an Inspection</a>
+        <a href="/?service=fire-alarm#contact" class="cta-button">Request a Fire Alarm Inspection Quote</a>
         <a href="tel:6046495665" class="cta-button-secondary">Call 604-649-5665</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 EWF Fire Services. All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy" style="color: #aaa; font-size: 0.85rem;">Privacy Policy</a></p>
+    <p>&copy; 2026 EWF Fire Services. All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy" style="color: #aaa; font-size: 0.85rem;">Privacy Policy</a></p>
     <div class="footer-logos">
       <img src="/assets/certifications/asttbc-logo.png" alt="ASTTBC Certified Technicians" class="asttbc-logo" />
       <img src="/assets/certifications/ulc-logo.png" alt="ULC Compliance" class="ulc-logo" />
@@ -265,5 +293,9 @@
     <p>Serving Vancouver &amp; Greater Metro Vancouver.</p>
   </footer>
 
+  <div class="mobile-action-bar" aria-label="Quick contact actions">
+    <a href="tel:6046495665">Call EWF</a>
+    <a href="/?service=fire-alarm#contact">Request Quote</a>
+  </div>
 </body>
 </html>
