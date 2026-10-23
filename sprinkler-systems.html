@@ -26,6 +26,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script src="/nav.js" defer></script>
   <script src="/enquiry.js"></script>
+  <script src="/canonical.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -64,10 +65,11 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9ZJPP9CTGQ');
+    gtag('config', 'G-9ZJPP9CTGQ', window.ewfAnalyticsPage || {});
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header>
     <a href="/"><img src="logo.png" alt="EWF Fire Services" class="logo" /></a>
@@ -94,6 +96,8 @@
       <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
   </header>
+
+  <main id="main" tabindex="-1">
 
   <!-- Hero -->
   <section class="page-hero">
@@ -178,7 +182,7 @@
     <div class="section-narrow">
       <h2 class="section-title">Why the 5-Year Internal Inspection Matters</h2>
       <p class="body-text">A 5-year internal sprinkler inspection involves opening selected sections of sprinkler piping to check for corrosion, obstructions, or buildup that could affect system performance. In many buildings, each floor's wet sprinkler zone is considered a separate sprinkler system once it passes through its own control valve and flow switch.</p>
-      <img src="/sprinkler-flushing.jpg" alt="Fire sprinkler system flushing in an active parkade" class="article-image" loading="lazy" />
+      <img src="/sprinkler-flushing.jpg" alt="Fire sprinkler system flushing in an active parkade" class="article-image" width="899" height="1200" loading="lazy" />
       <p class="photo-caption" style="text-align:center; margin-top: -1.5rem; margin-bottom: 2rem;">5-Year internal inspection in progress — flushing accumulated sediment from system deadlegs</p>
       <div class="highlight-box">
         <p>This inspection does more than satisfy code requirements—it helps identify potential issues early, extends the life of the system, and may prevent costly repairs down the road. Qualified sprinkler fitters perform the work efficiently with minimal disruption, helping ensure your sprinkler system remains reliable and ready when needed.</p>
@@ -299,6 +303,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <footer>
     <p>&copy; 2026 EWF Fire Services. All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy" style="color: #aaa; font-size: 0.85rem;">Privacy Policy</a></p>

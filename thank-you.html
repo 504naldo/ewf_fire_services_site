@@ -40,6 +40,9 @@
       padding: 2rem;
     }
     
+    .skip-link { position: absolute; left: -9999px; top: 0; z-index: 9999; background: #252a2d; color: #fff; padding: .75rem 1rem; }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+
     .thank-you-container {
       background: var(--white);
       padding: 4rem 3rem;
@@ -104,22 +107,24 @@
     }
   </style>
   <script src="/enquiry.js"></script>
+  <script src="/canonical.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZJPP9CTGQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9ZJPP9CTGQ');
+    gtag('config', 'G-9ZJPP9CTGQ', window.ewfAnalyticsPage || {});
   </script>
 </head>
 <body>
-  <div class="thank-you-container">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" tabindex="-1" class="thank-you-container">
     <img src="/logo.png" alt="EWF Fire Services" style="width:180px;max-width:100%;height:auto;margin:0 auto 1.5rem;display:block" />
     <i class="fas fa-check-circle status-icon" aria-hidden="true"></i>
     <h1>Thank You!</h1>
     <p>Thank you for contacting EWF Fire Services. For time-sensitive service needs or to follow up on your request, call <a href="tel:6046495665">604-649-5665</a> or email <a href="mailto:office@ewandf.ca">office@ewandf.ca</a>.</p>
     <a href="/" class="btn-home"><i class="fas fa-home"></i> Return to Home</a>
-  </div>
+  </main>
 </body>
 </html>

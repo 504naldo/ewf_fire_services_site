@@ -54,7 +54,7 @@
         {"@type":"Offer","itemOffered":{"@type":"Service","name":"Smoke Control System Testing & Coordination","url":"https://ewfservices.ca/smoke-control-systems"}},
         {"@type":"Offer","itemOffered":{"@type":"Service","name":"Emergency Lighting Testing","url":"https://ewfservices.ca/emergency-lighting"}},
         {"@type":"Offer","itemOffered":{"@type":"Service","name":"Fire Extinguisher Service & Inspection","url":"https://ewfservices.ca/fire-extinguishers"}},
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Backflow Testing","url":"https://ewfservices.ca/#contact"}}
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Backflow Testing","url":"https://ewfservices.ca/backflow-testing"}}
       ]
     }
   }
@@ -267,13 +267,14 @@
   <script>document.documentElement.classList.add('js');</script>
   <script src="/nav.js" defer></script>
   <script src="/enquiry.js"></script>
+  <script src="/canonical.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZJPP9CTGQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9ZJPP9CTGQ');
+    gtag('config', 'G-9ZJPP9CTGQ', window.ewfAnalyticsPage || {});
   </script>
 </head>
 <body>
@@ -314,7 +315,7 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section class="hero">
       <div class="container hero-inner">
         <p class="eyebrow">Vancouver & Greater Vancouver</p>

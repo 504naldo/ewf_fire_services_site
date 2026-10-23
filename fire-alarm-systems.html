@@ -26,6 +26,7 @@
   <script>document.documentElement.classList.add('js');</script>
   <script src="/nav.js" defer></script>
   <script src="/enquiry.js"></script>
+  <script src="/canonical.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -64,10 +65,11 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9ZJPP9CTGQ');
+    gtag('config', 'G-9ZJPP9CTGQ', window.ewfAnalyticsPage || {});
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header>
     <a href="/"><img src="logo.png" alt="EWF Fire Services" class="logo" /></a>
@@ -94,6 +96,8 @@
       <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
   </header>
+
+  <main id="main" tabindex="-1">
 
   <!-- Hero -->
   <section class="page-hero">
@@ -282,6 +286,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <footer>
     <p>&copy; 2026 EWF Fire Services. All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy" style="color: #aaa; font-size: 0.85rem;">Privacy Policy</a></p>
