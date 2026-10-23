@@ -28,5 +28,15 @@
       toggle.focus();
     }
   });
-  window.matchMedia('(max-width: 1100px)').addEventListener('change', () => setOpen(false));
+  const mobileQuery = window.matchMedia('(max-width: 1100px)');
+  if (mobileQuery.addEventListener) {
+    mobileQuery.addEventListener('change', () => setOpen(false));
+  } else if (mobileQuery.addListener) {
+    mobileQuery.addListener(() => setOpen(false));
+  }
+
+  // Collapse navigation only after its controls are ready. If this file fails
+  // to load or initialize, the links remain visible without a dead menu button.
+  setOpen(false);
+  document.documentElement.classList.add('nav-ready');
 })();

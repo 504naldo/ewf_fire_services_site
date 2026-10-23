@@ -46,3 +46,31 @@ For sprinkler enquiries, `?request=` accepts `annual-inspection`, `five-year-ins
 - [Google Analytics recommended events](https://support.google.com/analytics/answer/9267735?hl=en): `generate_lead` and later lead qualification events.
 
 The current implementation changes no GA4 settings, internal traffic filters, key-event definitions, backend infrastructure, or provider account configuration.
+
+## Canonical page locations (October 23 audit fix)
+
+GitHub Pages serves the existing clean paths and `.html` aliases with HTTP 200.
+The site cannot install arbitrary HTTP 301 rules through `.htaccess` or a
+`_redirects` file on that host. `canonical.js` therefore normalizes the known
+aliases in browser history and supplies a canonical `page_location` to the
+existing single GA configuration. This is browser/measurement normalization,
+not a server redirect. Canonical tags and internal links keep their clean URLs.
+
+Load scripts in this order: `enquiry.js`, `canonical.js`, then the Google tag and
+its configuration. Enquiry return markers must be consumed before URL cleanup.
+The normalizer preserves service selections, sprinkler request types, campaign
+parameters and anchors, and excludes `enquiry_return` from the GA location even
+if history replacement is blocked. It never navigates to another origin,
+reloads the page, submits the form or emits an extra page-view event. If the
+normalizer fails to load, the existing GA configuration remains functional.
+
+This affects new data only after deployment. For historical reports, group
+`/index.html` and `/index` under `/`, and each known service `.html` alias under
+its clean path. Compare by page path rather than mutable page title. Do not sum
+active-user counts from alias rows: people can visit both versions and must be
+deduplicated in GA4. Preserve the original date range and metric definitions.
+
+To validate locally, run `node --test tests/*.test.cjs`. Browser checks should
+confirm alias normalization before the initial GA page view, preserved query
+prefill and hash navigation, and no duplicate events. A production GA4 check
+still requires access to the property's Realtime/DebugView reports.
