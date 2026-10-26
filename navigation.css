@@ -34,6 +34,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .contact-grid > *, .field { min-width: 0; }
 input, select, textarea { min-width: 0; max-width: 100%; }
 .form-intro { margin-bottom: 1.25rem; color: #59656b; font-size: .9rem; }
+.form-warning {
+  margin: 1rem 0; padding: 1rem; border: 2px solid #a75312;
+  border-radius: 6px; background: #fff7ec; color: #542b0b;
+  scroll-margin-top: 100px;
+}
 .service-planning .section-narrow { padding-top: 2.5rem; padding-bottom: 2.5rem; }
 .service-planning .body-text { margin-bottom: 1rem; }
 .mobile-action-bar { display: none; }
