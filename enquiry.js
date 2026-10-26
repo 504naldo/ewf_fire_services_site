@@ -113,6 +113,11 @@
     var nextInput = form.querySelector('input[name="_next"]');
     var honey = form.querySelector('input[name="_honey"]');
     var originalNext = nextInput ? nextInput.value : '';
+    var offlineNotice = document.getElementById('enquiry-offline');
+    window.addEventListener('online', function () {
+      if (offlineNotice) offlineNotice.hidden = true;
+      // Reconnection never sends the customer's request automatically.
+    });
     var sourcePage = currentPage || '/';
     try {
       var referringPage = new URL(document.referrer);
@@ -147,12 +152,22 @@
     var lastSubmitAt = null;
     form.addEventListener('submit', function (submission) {
       if (submission.defaultPrevented || !form.checkValidity()) return;
+      // A known offline browser cannot hand this request to the provider. Keep
+      // the entered fields on screen and don't count an attempted handoff.
+      // An online/unknown state is not a reachability test: keep native POST.
+      if (offlineNotice && window.navigator && window.navigator.onLine === false) {
+        submission.preventDefault();
+        offlineNotice.hidden = false;
+        offlineNotice.focus();
+        return;
+      }
+      if (offlineNotice) offlineNotice.hidden = true;
       if (honey && honey.value) {
         if (nextInput) nextInput.value = originalNext;
         try { window.sessionStorage.removeItem(STORAGE_KEY); } catch (error) { /* Native POST remains unchanged. */ }
         return;
       }
-      // Do not trigger another POST, intercept CAPTCHA, or change native navigation.
+      // Do not trigger another POST, intercept CAPTCHA, or change online navigation.
       // Ignore rapid duplicate submit notifications in the measurement only.
       var now = Date.now();
       if (lastSubmitAt !== null && now - lastSubmitAt < 1500) return;

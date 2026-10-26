@@ -1,6 +1,6 @@
 # Enquiry measurement
 
-The website keeps its existing native POST to FormSubmit, including provider CAPTCHA and the honeypot. `enquiry.js` never sends a second request, submits a form itself, prevents native submission, or replaces the provider with AJAX. With JavaScript or browser storage unavailable, the original form action and thank-you destination remain the fallback. Provider CAPTCHA requirements still apply.
+The website keeps its existing native POST to FormSubmit, including provider CAPTCHA and the honeypot. `enquiry.js` never sends a second request, submits a form itself, or replaces the provider with AJAX. When the browser explicitly reports it is offline, submission is prevented, an accessible warning preserves the form on screen, and no handoff event is emitted. Reconnecting clears the warning but never auto-submits. An online or unknown connection state retains native submission; it does not prove provider reachability. With JavaScript or browser storage unavailable, the original form action and thank-you destination remain the fallback. Provider CAPTCHA requirements still apply.
 
 ## Signals, not confirmed leads
 
@@ -34,7 +34,7 @@ For sprinkler enquiries, `?request=` accepts `annual-inspection`, `five-year-ins
 
 1. Confirm all pages include the script before the Google tag configuration and that existing GA measurement ID `G-9ZJPP9CTGQ` is configured only once per page.
 2. Verify service links preselect the intended service, keep it editable, and preserve a safe source path. Check all four sprinkler request links and switching away from Sprinkler. Test desktop and mobile navigation, keyboard controls, and the no-script form fallback.
-3. Verify an invalid form and a filled honeypot produce no custom form events. Verify storage exceptions leave the original `_next` unchanged and do not stop native submission. Use local/browser stubs for these checks so no enquiry is sent.
+3. Verify an invalid form, a filled honeypot and a known offline attempt produce no custom form events. Offline attempts must retain the form, show and focus the warning, and require a new user submission after reconnecting. Verify storage exceptions leave the original `_next` unchanged and do not stop online native submission. Use local/browser stubs for these checks so no enquiry is sent.
 4. In a controlled environment with a stubbed tag and provider, verify a valid handoff produces one submit signal, a matching fresh return produces one return signal, and refresh, direct thank-you visits, mismatches and expired markers produce none. Verify no customer-entered fields reach the event queue or session storage.
 5. To validate production delivery, obtain authorization to send one clearly labelled test enquiry. Confirm the provider challenge, redirect, actual inbox receipt and GA DebugView/Realtime signals. Do not infer email delivery merely from the thank-you page. This implementation has not sent a production test enquiry.
 6. Keep these events out of lead/conversion totals until their meaning is accepted. Record the deployment date when comparing periods. Verify internal traffic rules before activating an exclusion; exclusions cannot repair historical reports.
