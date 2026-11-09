@@ -131,7 +131,10 @@ test('pending handoff blocks repeat activations and a stopped load permits an ex
   await posts[0].route.fulfill({status: 204});
   await page.locator('#enquiry-pending').waitFor();
   assert.equal(posts.length, 1, 'repeated Enter must not start a second native POST');
-  assert.deepEqual(submissions.map(s => s.prevented), [false, true, true]);
+  // Engines can dispatch different numbers of submit events for repeated Enter.
+  assert.equal(submissions[0].prevented, false);
+  assert.ok(submissions.length >= 3);
+  assert.ok(submissions.slice(1).every(s => s.prevented));
   assert.equal((await events(page)).length, 1);
   await page.getByRole('button', {name: 'Enable retry'}).click();
   assert.equal(await focus(page), 'submit-btn');
