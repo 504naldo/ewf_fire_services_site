@@ -7,13 +7,24 @@ permissions:
 jobs:
   browser:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 6
+    env:
+      QA_SCREENSHOTS: /tmp/ewf-warning-screenshots
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
       - run: node --test tests/*.test.cjs
-      - name: Install browser driver outside the checkout
-        run: npm install --prefix "$RUNNER_TEMP/ewf-qa" --no-audit --no-fund --ignore-scripts playwright@1.56.1
-      - name: Exercise the isolated site
-        run: NODE_PATH="$RUNNER_TEMP/ewf-qa/node_modules" CHROME_BIN="$(which google-chrome)" node audit/probe.cjs
+      - run: npm install --prefix "$RUNNER_TEMP/ewf-qa" --no-audit --no-fund --ignore-scripts playwright@1.56.1
+      - name: Run rendered site and contact-form tests
+        run: |
+          google-chrome --version
+          mkdir -p "$QA_SCREENSHOTS"
+          NODE_PATH="$RUNNER_TEMP/ewf-qa/node_modules" CHROME_BIN="$(which google-chrome)" node --test --test-timeout=22000 tests/browser/enquiry.cjs tests/browser/site.cjs
+      - name: Save warning screenshots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: warning-screenshots
+          path: ${{ env.QA_SCREENSHOTS }}
+          retention-days: 7
