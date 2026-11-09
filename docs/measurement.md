@@ -1,6 +1,6 @@
 # Enquiry measurement
 
-The website keeps its existing native POST to FormSubmit, including provider CAPTCHA and the honeypot. `enquiry.js` never sends a second request, submits a form itself, or replaces the provider with AJAX. When the browser explicitly reports it is offline, submission is prevented, an accessible warning preserves the form on screen, and no handoff event is emitted. Reconnecting clears the warning but never auto-submits. An online or unknown connection state retains native submission; it does not prove provider reachability. With JavaScript or browser storage unavailable, the original form action and thank-you destination remain the fallback. Provider CAPTCHA requirements still apply.
+The website keeps its existing native POST to FormSubmit, including provider CAPTCHA and the honeypot. `enquiry.js` never sends a second request, submits a form itself, or replaces the provider with AJAX. When the browser explicitly reports it is offline, submission is prevented, an accessible warning preserves the form on screen, and no handoff event is emitted. Reconnecting clears the warning and returns focus to Send if the warning still had focus. The visitor chooses when to submit. An online or unknown connection state retains native submission; it does not prove provider reachability. With JavaScript or browser storage unavailable, the original form action and thank-you destination remain the fallback. Provider CAPTCHA requirements still apply.
 
 ## Signals, not confirmed leads
 
@@ -16,7 +16,7 @@ No form text, name, email address, phone number, company, property address, or m
 
 ## Return marker
 
-On a valid native submit, the script stores a cryptographically random nonce, timestamp, safe service slug and safe source path in `sessionStorage`. The nonce is added to FormSubmit's `_next` URL as `enquiry_return`; no customer information is added to that URL. A matching marker is consumed once on `/thank-you` or `/thank-you.html`, only within 30 minutes. Missing, mismatched, malformed, expired or unavailable storage produces no return event. Rapid duplicate submit notifications within 1.5 seconds are ignored for measurement; the script does not alter the browser's actual submission behavior.
+On a valid native submit, the script stores a cryptographically random nonce, timestamp, safe service slug and safe source path in `sessionStorage`. The nonce is added to FormSubmit's `_next` URL as `enquiry_return`; no customer information is added to that URL. A matching marker is consumed once on `/thank-you` or `/thank-you.html`, only within 30 minutes. Missing, mismatched, malformed, expired or unavailable storage produces no return event. While the provider is opening, further submit attempts on this page are blocked. Browser Back restores the Send button. If loading stops on the form, Enable retry unlocks Send without submitting. A new deliberate submission creates a fresh marker. With older cached form markup, a 1.5-second guard suppresses rapid repeat submissions.
 
 Load `<script src="/enquiry.js"></script>` synchronously in the head **before** the Google tag configuration on every page, especially the thank-you page. It removes the nonce from the URL before GA's automatic page view and queues a valid return event after DOM initialization. Do not add `async` or `defer` to this script unless this ordering is preserved by another mechanism.
 
@@ -74,3 +74,12 @@ To validate locally, run `node --test tests/*.test.cjs`. Browser checks should
 confirm alias normalization before the initial GA page view, preserved query
 prefill and hash navigation, and no duplicate events. A production GA4 check
 still requires access to the property's Realtime/DebugView reports.
+
+## Running the rendered checks
+
+With Playwright installed for the test environment and Chromium installed via
+`playwright install chromium`, run `node --test tests/browser/*.cjs`.
+Set `CHROME_BIN` to use an existing Chrome executable, or install Playwright's
+WebKit and set `QA_BROWSER=webkit`. The tests serve this checkout from disk,
+intercept native provider POSTs and block external traffic. They require no
+provider or analytics credentials.

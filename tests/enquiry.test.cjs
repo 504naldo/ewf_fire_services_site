@@ -35,6 +35,13 @@ function fixture(options = {}) {
   const next = { value: ORIGINAL_NEXT };
   const honey = { value: options.honey || '' };
   const offlineNotice = { hidden: true, focus() { this.focused = true; } };
+  const sendButton = {
+    setAttribute(name, value) { this[name] = value; },
+    removeAttribute(name) { delete this[name]; },
+    focus() { this.focused = true; }
+  };
+  const pendingNotice = { hidden: true };
+  const retryButton = { addEventListener(type, callback) { handlers['retry:' + type] = callback; } };
   let prevented = 0;
   const windowListeners = {};
   const inputs = {
@@ -42,6 +49,7 @@ function fixture(options = {}) {
     'input[name="_next"]': next,
     'input[name="_honey"]': honey
   };
+  if (options.retryControls) inputs['button[type="submit"]'] = sendButton;
   const form = {
     action: 'https://formsubmit.co/office@ewandf.ca',
     method: 'POST',
@@ -53,6 +61,10 @@ function fixture(options = {}) {
   };
   const nodes = { 'enquiry-form': options.noForm ? null : form, service,
     'request-type': request, 'request-type-field': wrapper, 'enquiry-offline': offlineNotice };
+  if (options.retryControls) {
+    nodes['enquiry-pending'] = pendingNotice;
+    nodes['enquiry-retry'] = retryButton;
+  }
   function guardStorage(operation) {
     if (options.storageThrows === true || options.storageThrows === operation) throw new Error('Storage blocked');
   }
@@ -95,12 +107,12 @@ function fixture(options = {}) {
   });
   return {
     events, store, handlers, service, request, wrapper, source, next, honey, form, window,
-    offlineNotice, windowListeners, prevented: () => prevented,
+    offlineNotice, pendingNotice, sendButton, windowListeners, prevented: () => prevented,
     ready: () => documentListeners.DOMContentLoaded(),
     advance: milliseconds => { now += milliseconds; },
     submit: (defaultPrevented = false) => handlers.submit({
       defaultPrevented,
-      preventDefault: () => { prevented++; if (window.navigator.onLine !== false) assert.fail('Online submission must remain native.'); }
+      preventDefault: () => { prevented++; }
     }),
     click: href => documentListeners.click({ target: new Link(href) })
   };
@@ -192,10 +204,12 @@ test('native handoff records metadata only and does not alter form action or POS
   assert.equal(f.events.some(entry => entry[1] === 'generate_lead'), false);
 });
 
-test('rapid duplicate submit notifications share one marker and one event', () => {
+test('older markup blocks rapid duplicates and releases the guard for a later retry', () => {
   const f = submitFixture();
   const firstMarker = f.store.get(STORAGE_KEY);
+  assert.equal(f.prevented(), 0);
   f.submit();
+  assert.equal(f.prevented(), 1);
   assert.equal(f.events.length, 1);
   assert.equal(f.store.get(STORAGE_KEY), firstMarker);
   f.advance(2000);
@@ -334,5 +348,29 @@ test('online or unavailable connectivity detection preserves native submission',
     assert.equal(f.prevented(), 0);
     assert.equal(f.offlineNotice.hidden, true);
     assert.equal(f.events.length, 1);
+  }
+});
+
+test('a restored page or explicit retry unlocks Send without replaying the handoff', () => {
+  for (const reset of ['back', 'retry']) {
+    const f = submitFixture({ retryControls: true });
+    const marker = f.store.get(STORAGE_KEY);
+    assert.equal(f.sendButton['aria-disabled'], 'true');
+    assert.equal(f.pendingNotice.hidden, false);
+    f.windowListeners.pageshow({ persisted: false });
+    f.advance(10000);
+    f.submit();
+    assert.equal(f.prevented(), 1);
+    assert.equal(f.store.get(STORAGE_KEY), marker);
+    if (reset === 'back') f.windowListeners.pageshow({ persisted: true });
+    else f.handlers['retry:click']();
+    assert.equal(f.pendingNotice.hidden, true);
+    assert.equal(f.sendButton['aria-disabled'], undefined);
+    assert.equal(f.next.value, ORIGINAL_NEXT);
+    assert.equal(f.events.length, 1);
+    f.submit();
+    assert.equal(f.prevented(), 1);
+    assert.equal(f.events.length, 2);
+    assert.notEqual(f.store.get(STORAGE_KEY), marker);
   }
 });
