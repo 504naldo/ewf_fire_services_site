@@ -29,7 +29,8 @@ for (const [width, height, touch] of [[320, 568, true], [390, 844, true], [768, 
     const { context, page, posts, nextPost } = await setup(t, { width, height, touch });
     await page.goto(site + '/sprinkler-systems');
     await page.locator('a[href*="request=prv-service"]').first().click();
-    assert.equal(await page.locator('#service').inputValue(), 'Sprinkler');
+    await page.waitForLoadState('load');
+    assert.equal(await page.locator('#service').inputValue(), 'Sprinkler', page.url());
     assert.equal(await page.locator('#request-type').inputValue(), 'prv-service');
     assert.equal(await page.locator('[name="source_page"]').inputValue(), metadata.source_page);
     const url = page.url();
