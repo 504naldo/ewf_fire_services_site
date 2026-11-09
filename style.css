@@ -55,9 +55,6 @@ nav a:hover { color: var(--fire); }
   background: var(--white); color: var(--text-dark);
   cursor: pointer;
 }
-.menu-toggle .icon-close,
-.menu-toggle[aria-expanded="true"] .icon-open { display: none; }
-.menu-toggle[aria-expanded="true"] .icon-close { display: block; }
 
 /* ─── Buttons ─── */
 .cta-button {

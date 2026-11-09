@@ -34,11 +34,22 @@ function fixture(options = {}) {
   const source = { value: '/' };
   const next = { value: ORIGINAL_NEXT };
   const honey = { value: options.honey || '' };
+  const offlineNotice = { hidden: true, focus() { this.focused = true; } };
+  const sendButton = {
+    setAttribute(name, value) { this[name] = value; },
+    removeAttribute(name) { delete this[name]; },
+    focus() { this.focused = true; }
+  };
+  const pendingNotice = { hidden: true };
+  const retryButton = { addEventListener(type, callback) { handlers['retry:' + type] = callback; } };
+  let prevented = 0;
+  const windowListeners = {};
   const inputs = {
     'input[name="source_page"]': source,
     'input[name="_next"]': next,
     'input[name="_honey"]': honey
   };
+  if (options.retryControls) inputs['button[type="submit"]'] = sendButton;
   const form = {
     action: 'https://formsubmit.co/office@ewandf.ca',
     method: 'POST',
@@ -49,7 +60,11 @@ function fixture(options = {}) {
     requestSubmit: () => assert.fail('Measurement must not submit another request.')
   };
   const nodes = { 'enquiry-form': options.noForm ? null : form, service,
-    'request-type': request, 'request-type-field': wrapper };
+    'request-type': request, 'request-type-field': wrapper, 'enquiry-offline': offlineNotice };
+  if (options.retryControls) {
+    nodes['enquiry-pending'] = pendingNotice;
+    nodes['enquiry-retry'] = retryButton;
+  }
   function guardStorage(operation) {
     if (options.storageThrows === true || options.storageThrows === operation) throw new Error('Storage blocked');
   }
@@ -72,6 +87,8 @@ function fixture(options = {}) {
   }
   const window = {
     location,
+    navigator: { onLine: options.online },
+    addEventListener: (type, listener) => { windowListeners[type] = listener; },
     history: {
       state: null,
       replaceState(_state, _title, url) {
@@ -90,11 +107,12 @@ function fixture(options = {}) {
   });
   return {
     events, store, handlers, service, request, wrapper, source, next, honey, form, window,
+    offlineNotice, pendingNotice, sendButton, windowListeners, prevented: () => prevented,
     ready: () => documentListeners.DOMContentLoaded(),
     advance: milliseconds => { now += milliseconds; },
     submit: (defaultPrevented = false) => handlers.submit({
       defaultPrevented,
-      preventDefault: () => assert.fail('Measurement must not block native submission.')
+      preventDefault: () => { prevented++; }
     }),
     click: href => documentListeners.click({ target: new Link(href) })
   };
@@ -186,10 +204,12 @@ test('native handoff records metadata only and does not alter form action or POS
   assert.equal(f.events.some(entry => entry[1] === 'generate_lead'), false);
 });
 
-test('rapid duplicate submit notifications share one marker and one event', () => {
+test('older markup blocks rapid duplicates and releases the guard for a later retry', () => {
   const f = submitFixture();
   const firstMarker = f.store.get(STORAGE_KEY);
+  assert.equal(f.prevented(), 0);
   f.submit();
+  assert.equal(f.prevented(), 1);
   assert.equal(f.events.length, 1);
   assert.equal(f.store.get(STORAGE_KEY), firstMarker);
   f.advance(2000);
@@ -294,4 +314,63 @@ test('phone and email clicks record intent without addresses or link query value
   assert.equal(f.events[0][2].source_page, '/fire-alarm-systems');
   assert.equal(f.events[0][2].service_type, 'fire-alarm');
   assert.doesNotMatch(JSON.stringify(f.events), /private|6046495665|office@/);
+});
+
+test('offline submission stays on the form and emits no handoff or return marker', () => {
+  const f = submitFixture({ online: false });
+  assert.equal(f.prevented(), 1);
+  assert.equal(f.offlineNotice.hidden, false);
+  assert.equal(f.offlineNotice.focused, true);
+  assert.equal(f.events.length, 0);
+  assert.equal(f.store.size, 0);
+  assert.equal(f.next.value, ORIGINAL_NEXT);
+  assert.equal(f.service.value, 'Sprinkler');
+  assert.equal(f.form.action, 'https://formsubmit.co/office@ewandf.ca');
+});
+
+test('reconnecting clears the warning and permits a fresh native handoff without auto-sending', () => {
+  const f = submitFixture({ online: false });
+  f.window.navigator.onLine = true;
+  f.windowListeners.online();
+  assert.equal(f.offlineNotice.hidden, true);
+  assert.equal(f.events.length, 0);
+  assert.equal(f.store.size, 0);
+  f.submit();
+  assert.equal(f.prevented(), 1);
+  assert.equal(f.events.length, 1);
+  assert.equal(f.events[0][1], 'enquiry_form_submit');
+  assert.equal(f.store.size, 1);
+});
+
+test('online or unavailable connectivity detection preserves native submission', () => {
+  for (const online of [true, undefined]) {
+    const f = submitFixture({ online });
+    assert.equal(f.prevented(), 0);
+    assert.equal(f.offlineNotice.hidden, true);
+    assert.equal(f.events.length, 1);
+  }
+});
+
+test('a restored page or explicit retry unlocks Send without replaying the handoff', () => {
+  for (const reset of ['back', 'retry']) {
+    const f = submitFixture({ retryControls: true });
+    const marker = f.store.get(STORAGE_KEY);
+    assert.equal(f.sendButton['aria-disabled'], 'true');
+    assert.equal(f.pendingNotice.hidden, false);
+    f.windowListeners.pageshow({ persisted: false });
+    f.advance(10000);
+    f.submit();
+    assert.equal(f.prevented(), 1);
+    assert.equal(f.store.get(STORAGE_KEY), marker);
+    if (reset === 'back') f.windowListeners.pageshow({ persisted: true });
+    else f.handlers['retry:click']();
+    assert.equal(f.pendingNotice.hidden, true);
+    assert.equal(f.sendButton['aria-disabled'], undefined);
+    assert.equal(f.next.value, ORIGINAL_NEXT);
+    assert.equal(f.events.length, 1);
+    f.submit();
+    assert.equal(f.prevented(), 1);
+    assert.equal(f.events.length, 2);
+    assert.notEqual(f.store.get(STORAGE_KEY), marker);
+  }
 });
