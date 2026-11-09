@@ -26,7 +26,7 @@ const metadata = { service_type: 'sprinkler', source_page: '/sprinkler-systems' 
 
 for (const [width, height, touch] of [[320, 568, true], [390, 844, true], [768, 1024, true], [1440, 900, false]]) {
   test(`offline, reconnect and explicit retry at ${width}×${height}`, async t => {
-    const { context, page, posts, nextPost } = await setup(t, { width, height, touch });
+    const { context, page, posts, nextPost, submissions } = await setup(t, { width, height, touch });
     await page.goto(site + '/sprinkler-systems');
     await page.locator('a[href*="request=prv-service"]').first().click();
     await page.waitForLoadState('load');
@@ -85,7 +85,6 @@ for (const [width, height, touch] of [[320, 568, true], [390, 844, true], [768, 
     const sent = nextPost();
     await page.keyboard.press('Enter');
     await sent;
-    await page.waitForFunction(() => window.dataLayer.some(c => c[1] === 'enquiry_form_submit'));
     assert.equal(posts.length, 1);
     const { fields, route } = posts[0];
     const next = new URL(fields.get('_next'));
@@ -94,10 +93,12 @@ for (const [width, height, touch] of [[320, 568, true], [390, 844, true], [768, 
     assert.equal(fields.has('_captcha'), false);
     assert.equal(fields.get('_honey'), '');
     assert.deepEqual([...fields].filter(([k]) => k !== '_next'), values.filter(([k]) => k !== '_next'));
-    const pending = await page.evaluate(key => JSON.parse(sessionStorage.getItem(key)), marker);
+    const handoff = submissions.at(-1);
+    assert.equal(handoff.prevented, false);
+    const pending = handoff.pending;
     assert.deepEqual(Object.keys(pending).sort(), ['createdAt', 'service', 'sourcePage', 'token']);
     assert.equal(pending.token, next.searchParams.get('enquiry_return'));
-    assert.deepEqual(await events(page), [['enquiry_form_submit', metadata]]);
+    assert.deepEqual(handoff.events, [['enquiry_form_submit', metadata]]);
     // Use a fixture link for the provider return, with the native _next payload.
     await route.fulfill({contentType: 'text/html', body: '<a id="return">Return</a>'});
     await page.waitForURL(provider);
@@ -111,8 +112,8 @@ for (const [width, height, touch] of [[320, 568, true], [390, 844, true], [768, 
   });
 }
 
-test('repeated keyboard activation while a provider response is pending', async t => {
-  const { page, posts, nextPost } = await setup(t);
+test('pending handoff blocks repeat activations and a stopped load permits an explicit retry', async t => {
+  const { page, posts, nextPost, submissions } = await setup(t);
   await page.goto(site);
   await fill(page);
   await page.locator(submit).focus();
@@ -120,9 +121,23 @@ test('repeated keyboard activation while a provider response is pending', async 
   await page.keyboard.press('Enter');
   await sent;
   await page.keyboard.press('Enter');
-  await delay(150);
+  await delay(1700);
+  await page.keyboard.press('Enter');
+  // A response without a document keeps the original form in the tab.
+  await posts[0].route.fulfill({status: 204});
+  await page.locator('#enquiry-pending').waitFor();
   assert.equal(posts.length, 1, 'repeated Enter must not start a second native POST');
+  assert.deepEqual(submissions.map(s => s.prevented), [false, true, true]);
   assert.equal((await events(page)).length, 1);
+  await page.getByRole('button', {name: 'Enable retry'}).click();
+  assert.equal(await focus(page), 'submit-btn');
+  assert.equal(posts.length, 1);
+  assert.equal(await page.locator(submit).getAttribute('aria-disabled'), null);
+  const retry = nextPost();
+  await page.keyboard.press('Enter');
+  await retry;
+  assert.equal(posts.length, 2);
+  assert.notEqual(posts[0].fields.get('_next'), posts[1].fields.get('_next'));
 });
 
 test('provider error, browser Back and a manual retry', async t => {

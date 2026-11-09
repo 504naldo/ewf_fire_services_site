@@ -16,9 +16,6 @@ jobs:
           persist-credentials: false
       - run: node --test tests/*.test.cjs
       - run: npm install --prefix "$RUNNER_TEMP/ewf-qa" --no-audit --no-fund --ignore-scripts playwright@1.56.1
-      - name: Inspect focus and native navigation signals
-        run: NODE_PATH="$RUNNER_TEMP/ewf-qa/node_modules" CHROME_BIN="$(which google-chrome)" timeout 30 node audit/diagnose.cjs
-        continue-on-error: true
       - name: Run rendered site and contact-form tests
         run: |
           google-chrome --version

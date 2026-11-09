@@ -27,6 +27,18 @@ async function fixture(browser, options = {}) {
   const posts = [];
   const requests = new EventEmitter();
   const errors = [];
+  const submissions = [];
+  await context.exposeBinding('recordSubmitState', (_, state) => submissions.push(state));
+  await context.addInitScript(key => {
+    // At window bubbling time, the form's own listener has already run.
+    window.addEventListener('submit', e => {
+      let pending = null;
+      try { pending = JSON.parse(sessionStorage.getItem(key)); } catch { /* storage-blocked fixture */ }
+      const events = window.dataLayer.filter(call => call[0] === 'event')
+        .map(call => [call[1], call[2]]);
+      window.recordSubmitState({ prevented: e.defaultPrevented, pending, events });
+    });
+  }, marker);
   await context.route('**/*', async route => {
     const request = route.request();
     if (request.url() === provider && request.method() === 'POST') {
@@ -52,7 +64,7 @@ async function fixture(browser, options = {}) {
   const page = await context.newPage();
   page.setDefaultTimeout(6000);
   page.on('pageerror', e => errors.push(e.message));
-  return { context, page, posts, errors, nextPost: () => once(requests, 'post', {signal: AbortSignal.timeout(6000)}) };
+  return { context, page, posts, errors, submissions, nextPost: () => once(requests, 'post', {signal: AbortSignal.timeout(6000)}) };
 }
 
 async function fill(page) {

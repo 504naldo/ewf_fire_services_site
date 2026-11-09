@@ -100,7 +100,7 @@ function fixture(options = {}) {
     advance: milliseconds => { now += milliseconds; },
     submit: (defaultPrevented = false) => handlers.submit({
       defaultPrevented,
-      preventDefault: () => { prevented++; if (window.navigator.onLine !== false) assert.fail('Online submission must remain native.'); }
+      preventDefault: () => { prevented++; }
     }),
     click: href => documentListeners.click({ target: new Link(href) })
   };
@@ -192,10 +192,12 @@ test('native handoff records metadata only and does not alter form action or POS
   assert.equal(f.events.some(entry => entry[1] === 'generate_lead'), false);
 });
 
-test('rapid duplicate submit notifications share one marker and one event', () => {
+test('older markup blocks rapid duplicates and releases the guard for a later retry', () => {
   const f = submitFixture();
   const firstMarker = f.store.get(STORAGE_KEY);
+  assert.equal(f.prevented(), 0);
   f.submit();
+  assert.equal(f.prevented(), 1);
   assert.equal(f.events.length, 1);
   assert.equal(f.store.get(STORAGE_KEY), firstMarker);
   f.advance(2000);

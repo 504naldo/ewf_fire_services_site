@@ -114,9 +114,32 @@
     var honey = form.querySelector('input[name="_honey"]');
     var originalNext = nextInput ? nextInput.value : '';
     var offlineNotice = document.getElementById('enquiry-offline');
+    var sendButton = form.querySelector('button[type="submit"]');
+    var pendingNotice = document.getElementById('enquiry-pending');
+    var retryButton = document.getElementById('enquiry-retry');
+    var lastSubmitAt = null;
+    var waiting = false;
+
+    function resetHandoff() {
+      waiting = false;
+      lastSubmitAt = null;
+      if (pendingNotice) pendingNotice.hidden = true;
+      if (sendButton) sendButton.removeAttribute('aria-disabled');
+      if (nextInput) nextInput.value = originalNext;
+    }
+
+    // Back can restore the same document, including its in-flight UI.
+    window.addEventListener('pageshow', function (page) {
+      if (page.persisted) resetHandoff();
+    });
+    if (retryButton && sendButton) retryButton.addEventListener('click', function () {
+      resetHandoff();
+      sendButton.focus();
+    });
     window.addEventListener('online', function () {
-      if (offlineNotice) offlineNotice.hidden = true;
-      // Reconnection never sends the customer's request automatically.
+      if (!offlineNotice || offlineNotice.hidden) return;
+      if (document.activeElement === offlineNotice && sendButton) sendButton.focus();
+      offlineNotice.hidden = true;
     });
     var sourcePage = currentPage || '/';
     try {
@@ -149,9 +172,12 @@
     updateRequestField();
     if (serviceSelect) serviceSelect.addEventListener('change', updateRequestField);
 
-    var lastSubmitAt = null;
     form.addEventListener('submit', function (submission) {
       if (submission.defaultPrevented || !form.checkValidity()) return;
+      if (waiting) {
+        submission.preventDefault();
+        return;
+      }
       // A known offline browser cannot hand this request to the provider. Keep
       // the entered fields on screen and don't count an attempted handoff.
       // An online/unknown state is not a reachability test: keep native POST.
@@ -167,10 +193,19 @@
         try { window.sessionStorage.removeItem(STORAGE_KEY); } catch (error) { /* Native POST remains unchanged. */ }
         return;
       }
-      // Do not trigger another POST, intercept CAPTCHA, or change online navigation.
-      // Ignore rapid duplicate submit notifications in the measurement only.
+      // Allow the first native POST. Keep a deliberate retry available if the
+      // provider never navigates this tab (for example, a stopped load or 204).
+      // Older cached markup without the retry control gets a bounded guard.
       var now = Date.now();
-      if (lastSubmitAt !== null && now - lastSubmitAt < 1500) return;
+      if (lastSubmitAt !== null && now - lastSubmitAt < 1500) {
+        submission.preventDefault();
+        return;
+      }
+      if (sendButton && retryButton && pendingNotice) {
+        waiting = true;
+        sendButton.setAttribute('aria-disabled', 'true');
+        pendingNotice.hidden = false;
+      }
       lastSubmitAt = now;
       var service = serviceSelect && serviceSlug(serviceSelect.value);
       if (!service) return;
