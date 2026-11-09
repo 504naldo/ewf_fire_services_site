@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: 56ef78e1facaace090ab401672eb9ec1361b350c
+          ref: 0a41b853c4e55acd5e1bca05c01d29377790911b
           persist-credentials: false
       - run: node --test tests/*.test.cjs
       - run: npm install --prefix "$RUNNER_TEMP/ewf-qa" --no-audit --no-fund --ignore-scripts playwright@1.56.1
