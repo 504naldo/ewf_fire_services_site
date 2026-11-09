@@ -1,0 +1,19 @@
+name: PR 21 isolated browser QA
+on:
+  push:
+    branches: [qa/pr-21-browser]
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - run: node --test tests/*.test.cjs
+      - name: Install browser driver outside the checkout
+        run: npm install --prefix "$RUNNER_TEMP/ewf-qa" --no-audit --no-fund --ignore-scripts playwright@1.56.1
+      - name: Exercise the isolated site
+        run: NODE_PATH="$RUNNER_TEMP/ewf-qa/node_modules" CHROME_BIN="$(which google-chrome)" node audit/probe.cjs

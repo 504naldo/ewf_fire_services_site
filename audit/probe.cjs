@@ -1,0 +1,25 @@
+const { chromium } = require('playwright')
+const path = require('node:path'), fs = require('node:fs/promises')
+;(async () => {
+const b=await chromium.launch({executablePath:process.env.CHROME_BIN,args:['--no-sandbox','--host-resolver-rules=MAP * ~NOTFOUND']})
+const c=await b.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true,reducedMotion:'reduce',serviceWorkers:'block'})
+const posts=[]; const p=await c.newPage()
+await c.route('**/*', async r=>{
+const u=new URL(r.request().url());if(u.origin==='https://formsubmit.co'){console.log('POST',posts.length+1);posts.push(r);return}
+if(u.origin!=='https://ewfservices.ca')return r.abort()
+let f=u.pathname==='/'?'/index.html':u.pathname
+await r.fulfill({path:path.join(__dirname,'..',f)}).catch(()=>r.abort())
+})
+p.setDefaultTimeout(7000); await p.goto('https://ewfservices.ca/?service=sprinkler&request=prv-service#contact')
+await p.locator('#property-type').selectOption('Commercial'); await p.locator('#contact-name').fill('Fixture');await p.locator('#contact-email').fill('fixture@example.invalid')
+const btn=p.locator('.submit-btn'), warn=p.locator('#enquiry-offline')
+await c.setOffline(true); await btn.tap();await p.waitForTimeout(300)
+console.log('OFFLINE',await warn.isVisible(),await p.evaluate(()=>({focus:document.activeElement.outerHTML.slice(0,60),alertTop:document.querySelector('[role=alert]').getBoundingClientRect().top,alertBottom:document.querySelector('[role=alert]').getBoundingClientRect().bottom,footer:document.querySelector('.mobile-action-bar').getBoundingClientRect().top,scroll:document.documentElement.scrollWidth,inner:innerWidth})))
+await c.setOffline(false);await p.waitForTimeout(100);console.log('reconnected focus',await p.evaluate(()=>document.activeElement.tagName+' '+document.activeElement.className))
+await p.evaluate(()=>{window.logs=[];window.navigation?.addEventListener('navigate',e=>{logs.push(['navigate',e.destination.url,e.canIntercept,e.signal.aborted]);e.signal.addEventListener('abort',()=>logs.push(['abort']))});document.addEventListener('submit',e=>logs.push(['submit',e.defaultPrevented])); window.addEventListener('pageshow',e=>logs.push(['pageshow',e.persisted]));})
+await btn.focus();await p.keyboard.press('Enter');await p.waitForTimeout(240);await p.keyboard.press('Enter');await p.waitForTimeout(200)
+console.log('pending',posts.length,await p.evaluate(()=>window.logs))
+await p.keyboard.press('Escape');await p.waitForTimeout(300);console.log('escape',await p.evaluate(()=>window.logs))
+await p.evaluate(()=>window.stop());await p.waitForTimeout(150);console.log('stop',await p.evaluate(()=>window.logs))
+await b.close()
+})().catch(e=>{console.error(e);process.exit(1)})
