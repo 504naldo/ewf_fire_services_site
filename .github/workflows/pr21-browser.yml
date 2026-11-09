@@ -8,23 +8,33 @@ jobs:
   browser:
     runs-on: ubuntu-latest
     timeout-minutes: 6
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, webkit]
     env:
+      QA_BROWSER: ${{ matrix.engine }}
       QA_SCREENSHOTS: /tmp/ewf-warning-screenshots
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
+          ref: 56ef78e1facaace090ab401672eb9ec1361b350c
           persist-credentials: false
       - run: node --test tests/*.test.cjs
       - run: npm install --prefix "$RUNNER_TEMP/ewf-qa" --no-audit --no-fund --ignore-scripts playwright@1.56.1
+      - name: Install the WebKit test browser
+        if: matrix.engine == 'webkit'
+        run: "$RUNNER_TEMP/ewf-qa/node_modules/.bin/playwright install --with-deps webkit"
       - name: Run rendered site and contact-form tests
         run: |
+          git rev-parse HEAD
           google-chrome --version
           mkdir -p "$QA_SCREENSHOTS"
-          NODE_PATH="$RUNNER_TEMP/ewf-qa/node_modules" CHROME_BIN="$(which google-chrome)" node --test --test-timeout=22000 tests/browser/enquiry.cjs tests/browser/site.cjs
+          NODE_PATH="$RUNNER_TEMP/ewf-qa/node_modules" CHROME_BIN="$(which google-chrome)" node --test --test-timeout=40000 tests/browser/enquiry.cjs tests/browser/site.cjs
       - name: Save warning screenshots
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: warning-screenshots
+          name: warning-screenshots-${{ matrix.engine }}
           path: ${{ env.QA_SCREENSHOTS }}
           retention-days: 7
